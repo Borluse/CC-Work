@@ -1,0 +1,15 @@
+{
+  "name": "story",
+  "version": "2.0.0",
+  "description": "需求分析三阶段工作流插件：将需求从设计到实现到Review的完整生命周期拆分为独立的skill，支持阶段门禁和文档先行原则",
+  "author": {
+    "name": "borlusezhao"
+  },
+  "keywords": ["需求分析", "工作流", "设计", "实现", "review"],
+  "category": "开发工具",
+  "skills": [
+    "./skills/story-design",
+    "./skills/story-implement",
+    "./skills/story-review"
+  ]
+}
