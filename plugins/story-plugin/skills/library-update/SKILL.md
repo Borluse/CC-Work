@@ -3,7 +3,6 @@ name: library-update
 description: 根据上下文或用户的输入，更新Library文档。TRIGGER: 当用户需要更新Library文档时。
 ---
 
-# 概述
 根据用户输入或上下文内容，高度提炼关键信息，并根据library目录结构智能更新相应的技术文档。
 
 # 工作流程

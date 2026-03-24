@@ -3,9 +3,6 @@ name: git-commit
 description: 根据当前的待提交，生成对应的提交记录并提交。TRIGGER: 当用户需要git提交代码的时候。
 context: fork
 ---
-
-## 概述
-
 根据git差异自动生成提交信息并完成提交操作。
 
 ## 流程
