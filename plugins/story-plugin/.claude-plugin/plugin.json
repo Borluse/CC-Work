@@ -10,6 +10,8 @@
   "skills": [
     "./skills/story-design",
     "./skills/story-implement",
-    "./skills/story-review"
+    "./skills/story-review",
+    "./skills/library-update"
+
   ]
 }
