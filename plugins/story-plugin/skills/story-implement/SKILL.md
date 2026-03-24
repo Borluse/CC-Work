@@ -1,6 +1,8 @@
 ---
 name: story-implement
 description: 根据设计文档实现代码。TRIGGER: 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用
+context: fork
+agent: ue5-expert
 ---
 
 **必须** 使用子任务，根据设计文档实现代码。
@@ -12,6 +14,7 @@ description: 根据设计文档实现代码。TRIGGER: 当用户已完成需求�
 
 ## 文件只读处理
 - 发现文件是只读时，先通过 p4v checkout 再编辑
+- 参考 `.agent/library/p4.md`
 
 ## 顶层流程
 
@@ -39,7 +42,8 @@ description: 根据设计文档实现代码。TRIGGER: 当用户已完成需求�
 具体步骤：
 1. 编辑需求文档对应章节
 2. 在「变更记录」追加：`**<YYYY-MM-DD HH:mm>**：[实现] <变更简述>`
-3. 修改源代码
+3. 提醒用户：`需求文档已更新，请检查`
+4. 等待用户确认是否更新
 
 ### Phase 3 完成实现
 

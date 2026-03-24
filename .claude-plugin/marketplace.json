@@ -15,6 +15,18 @@
       "category": "workflow",
       "keywords": ["ue5", "unreal-engine", "fps", "game-dev", "code-review", "story", "requirements"],
       "tags": ["ue5", "game-development", "workflow", "code-review"]
+    },
+    {
+      "name": "git-plugin",
+      "source": "./plugins/git-plugin",
+      "description": "Git提交插件，提供自动化的git提交功能，根据代码差异生成提交信息并完成提交",
+      "version": "1.0.0",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": ["Git", "提交", "版本控制"],
+      "tags": ["git", "version-control", "commit"]
     }
   ]
 }

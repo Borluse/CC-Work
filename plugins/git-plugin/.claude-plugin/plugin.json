@@ -1,0 +1,13 @@
+{
+  "name": "git",
+  "version": "1.0.0",
+  "description": "Git提交插件",
+  "author": {
+    "name": "borlusezhao"
+  },
+  "keywords": ["Git", "提交"],
+  "category": "开发工具",
+  "skills": [
+    "git-commit"
+  ]
+}
