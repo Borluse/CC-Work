@@ -1,6 +1,8 @@
 ---
 name: story-review
 description: Review 需求或者代码。TRIGGER: 当用户说"开始 Review"、"审查代码"、"检查实现"时使用。
+context: fork
+agent: ue5-reviewer
 ---
 
 **必须** 使用子任务，根据设计文档实现代码。
