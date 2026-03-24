@@ -8,6 +8,7 @@
   "keywords": ["Git", "提交"],
   "category": "开发工具",
   "skills": [
-    "git-commit"
+    "./skills/git-commit",
+    "./skills/readme-update"
   ]
 }
