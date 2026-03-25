@@ -1,6 +1,6 @@
 # CC-Work
 
-CodeBuddy Code 插件市场仓库，包含多个面向开发工作流的插件和 Agent。
+Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 Agent。
 
 ## 插件列表
 
@@ -53,4 +53,4 @@ plugins/
 
 ## 使用方式
 
-本仓库作为 CodeBuddy Code 插件市场源使用，插件通过 `marketplace.json` 注册并分发。
+本仓库作为 Claude Code 插件市场源使用，插件通过 `marketplace.json` 注册并分发。
