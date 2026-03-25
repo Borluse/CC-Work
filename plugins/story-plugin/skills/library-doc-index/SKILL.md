@@ -1,6 +1,6 @@
 ---
 name: library-doc-index
-description: 索引某个目录的文件，并生成到Library文档。TRIGGER: 当用户需要更新Library文档时。
+description: 索引某个目录的代码文件，生成 CODEBUDDY.md 索引文档。TRIGGER: 当用户说"索引目录"、"生成代码索引"、"生成 CODEBUDDY"时使用。
 ---
 
 ## 概述
