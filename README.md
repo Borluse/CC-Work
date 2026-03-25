@@ -4,7 +4,7 @@ CodeBuddy Code 插件市场仓库，包含多个面向开发工作流的插件�
 
 ## 插件列表
 
-### story-plugin (v2.2.0)
+### story-plugin (v2.4.0)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -18,6 +18,7 @@ CodeBuddy Code 插件市场仓库，包含多个面向开发工作流的插件�
 | `library-update` | Library 文档更新 |
 | `library-doc-index` | 目录文件索引生成 |
 | `story-wiki` | 从需求文档和代码生成 Wiki |
+| `story-learn` | 从设计文档提炼方法论写入 library |
 
 **Agents：**
 
