@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v2.7.0)
+### story-plugin (v2.7.1)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 

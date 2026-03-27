@@ -41,4 +41,5 @@ agent: ue5-expert
 - 提炼 ≤5 词中文短语作为目录名（如 `怪物推挤`），向用户确认。
 - 创建目录 `.agent/story/<slug>`，统计已有文档数 N，新文件命名 `需求<N+1>_<功能名>.md`。
 - 加载 `./references/document-template.md` 来生成文档。
-- 文档写完或更新后，提醒用户打开文件确认，并提示：当前文档路径、可用 `/story-implement` 进入实现阶段、可用 `/story-review` 进入 Review 阶段。
+- 文档写完或更新后，提醒用户打开文件确认，并提示：当前文档路径、
+- 使用AskUserQuestion询问用户：可用 `/story-implement` 进入实现阶段、可用 `/story-review` 进入 Review 阶段。

@@ -49,5 +49,5 @@ agent: ue5-expert
 代码编写完成后，提醒用户：
 - 当前需求文档路径
 - 已修改的源文件列表
-- 可使用 `/story-review` 进入 Review 阶段
+- 使用 AskUserQuestion 工具询问用户：可使用 `/story-review` 进入 Review 阶段
 - 可继续修改代码
