@@ -8,7 +8,6 @@
       "name": "story-plugin",
       "source": "./plugins/story-plugin",
       "description": "需求生命周期管理插件，通过 /story 路由入口提供需求设计、实现、Review、经验提炼工作流，以及 UE5 C++ 代码阅读专家和代码审查专家两个 Agent",
-      "version": "2.8.1",
       "author": {
         "name": "borlusezhao"
       },
@@ -20,7 +19,6 @@
       "name": "git-plugin",
       "source": "./plugins/git-plugin",
       "description": "Git提交插件，提供自动化的git提交功能，根据代码差异生成提交信息并完成提交",
-      "version": "1.0.0",
       "author": {
         "name": "borlusezhao"
       },
