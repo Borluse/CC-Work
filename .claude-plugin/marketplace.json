@@ -7,8 +7,8 @@
     {
       "name": "story-plugin",
       "source": "./plugins/story-plugin",
-      "description": "UE5 FPS 项目需求生命周期管理插件，提供需求设计(/story-design)、实现(/story-implement)、Review(/story-review)三阶段工作流，以及 UE5 C++ 代码阅读专家和代码审查专家两个 Agent",
-      "version": "2.7.1",
+      "description": "需求生命周期管理插件，通过 /story 路由入口提供需求设计、实现、Review、经验提炼工作流，以及 UE5 C++ 代码阅读专家和代码审查专家两个 Agent",
+      "version": "2.8.0",
       "author": {
         "name": "borlusezhao"
       },
