@@ -11,8 +11,8 @@ description: 需求工作流入口。TRIGGER: 根据用户描述自动路由到�
 
 | 路由目标 | 适用场景 |
 |---|---|
-| `/story-design` | 新需求、分析需求、拆解功能、设计方案 |
-| `/story-implement` | 开始实现、写代码、编码、改代码 |
+| `/story-design` | 新需求、分析需求、拆解功能、设计方案、改代码、改设计、改需求 |
+| `/story-implement` | 开始实现、写代码、编码|
 | `/story-review` | review、审查、检查 |
 | `/story-learn` | 提炼方法论、沉淀经验、写入 library |
 
