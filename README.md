@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v2.9.0)
+### story-plugin (v2.9.1)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -25,7 +25,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | `ue5-expert` | UE5 FPS C++ 代码阅读专家 |
 | `ue5-reviewer` | UE5 FPS C++ 代码审查专家 |
 
-### git-plugin (v1.0.0)
+### git-plugin (v1.1.0)
 
 Git 工具插件，提供自动化提交和文档生成功能。
 
