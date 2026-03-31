@@ -1,6 +1,7 @@
 ---
 name: story-learn
 description: 从设计文档或当前上下文提炼可复用方法论写入 library。TRIGGER: 当用户说"提炼方法论"、"沉淀经验"、"learn from story"、"总结设计模式"、"把这个写入library"时使用。
+user-invocable: false
 context: fork
 agent: ue5-expert
 ---
@@ -50,7 +51,7 @@ agent: ue5-expert
 
 ## Phase 2：提炼方法论
 
-启用子任务，从输入内容中提取可复用模式，分以下维度分析：
+从输入内容中提取可复用模式，分以下维度分析：
 
 ### 提取维度
 
