@@ -6,7 +6,25 @@ user-invocable: false
 
 需求拆解，帮助用户理解需求，生成 slug，探索代码，澄清问题，创建目录，输出文档。
 
-## 设计规则
+## ⚠️ 强制要求：使用 subagent 执行
+
+**你必须使用 Agent tool 来 spawn `story:ue5-expert` subagent 执行设计任务。**
+**严禁在主会话中直接执行探索代码或设计逻辑。**
+
+### 执行步骤
+
+1. 先与用户确认需求范围和参数（Slug、需求描述）
+2. 收集完信息后，调用 Agent tool，参数如下：
+   - `subagent_type`: `story:ue5-expert`
+   - `prompt`: 包含以下全部内容的完整指令：
+     - 用户的需求描述
+     - 已有的需求文档路径（如有）
+     - 下方「设计规则」章节的全部内容
+3. 等待 subagent 返回结果后，将文档路径和摘要呈现给用户
+
+---
+
+## 设计规则（传递给 subagent）
 
 - 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 这个文件获取知识。
 - 当需要设计C++代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
@@ -48,5 +66,5 @@ user-invocable: false
   - 若无已有文档：直接新建。
 - 文档方式：目录 `.agent/story/<slug>`，统计已有文档数 N，新文件命名 `需求<N+1>_<功能名>.md`。
 - 加载 `./references/document-template.md` 来生成文档。
-- 文档写完或更新后，提醒用户打开文件确认，并提示：当前文档路径、
-- 提示用户：可用 `/story` 进入实现或 Review 阶段。
+- 文档写完或更新后，提醒用户打开文件确认，并提示当前文档路径。
+- 提示用户：可进入实现阶段或 Review 阶段。
