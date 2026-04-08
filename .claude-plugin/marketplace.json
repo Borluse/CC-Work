@@ -25,6 +25,17 @@
       "category": "开发工具",
       "keywords": ["Git", "提交", "版本控制"],
       "tags": ["git", "version-control", "commit"]
+    },
+    {
+      "name": "p4-plugin",
+      "source": "./plugins/p4-plugin",
+      "description": "Perforce 工具插件，提供 P4 pending changelist 代码审查功能",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": ["perforce", "p4", "code-review", "changelist"],
+      "tags": ["perforce", "p4", "version-control", "code-review"]
     }
   ]
 }

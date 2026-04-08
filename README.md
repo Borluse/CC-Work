@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v2.12.1)
+### story-plugin (v2.12.6)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -25,7 +25,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | `ue5-expert` | UE5 FPS C++ 代码阅读专家 |
 | `ue5-reviewer` | UE5 FPS C++ 代码审查专家 |
 
-### git-plugin (v1.1.3)
+### git-plugin (v1.1.4)
 
 Git 工具插件，提供自动化提交和文档生成功能。
 
@@ -36,6 +36,16 @@ Git 工具插件，提供自动化提交和文档生成功能。
 | `git-commit` | 根据代码差异自动生成提交信息并完成提交 |
 | `readme-update` | 根据项目内容生成或更新 README |
 | `update-version` | 根据上下文更新插件版本号、同步 README，可选提交推送 |
+
+### p4-plugin (v1.0.1)
+
+Perforce 工具插件，提供 P4 changelist 代码审查功能。
+
+**Skills：**
+
+| Skill | 说明 |
+|-------|------|
+| `review-cl` | 对 P4 pending changelist 执行代码审查 |
 
 ## 项目结构
 
@@ -48,6 +58,8 @@ plugins/
     skills/                 # 设计、实现、Review 等 Skill
   git-plugin/               # Git 工具插件
     skills/                 # 提交、README 更新等 Skill
+  p4-plugin/                # Perforce 工具插件
+    skills/                 # CL 审查等 Skill
 ```
 
 ## 使用方式

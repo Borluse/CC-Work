@@ -15,6 +15,7 @@ description: 需求工作流入口。TRIGGER: 根据用户描述自动路由到�
 | `/story-implement` | 开始实现、写代码、编码|
 | `/story-review` | review、审查、检查 |
 | `/story-learn` | 提炼方法论、沉淀经验、写入 library |
+| `/story-consolidate` | 整理文档、合并文档、根据代码整理需求、生成总览文档 |
 
 ## 流程
 
