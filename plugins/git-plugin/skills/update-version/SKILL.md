@@ -1,6 +1,6 @@
 ---
 name: update-version
-description: 根据上下文判断涉及哪个插件，更新其 plugin.json 版本号，同步 README，可选提交推送。TRIGGER: 当用户说"更新版本号"、"bump version"、"发版"时使用。
+description: "根据上下文判断涉及哪个插件，更新其 plugin.json 版本号，同步 README，可选提交推送。TRIGGER: 当用户说'更新版本号'、'bump version'、'发版'时使用。"
 ---
 
 根据会话上下文判断本次改动涉及哪个插件，更新对应的版本号、同步 README，并可选提交推送。

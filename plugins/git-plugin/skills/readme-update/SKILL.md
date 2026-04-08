@@ -1,6 +1,6 @@
 ---
 name: readme-update
-description: 根据当前工作目录的代码结构和内容，自动生成或更新 README.md 文件。Use when the user says "更新 README" / "生成 README" / "写 README" / "update readme"，或要求根据项目内容刷新 README 时触发。
+description: "根据当前工作目录的代码结构和内容，自动生成或更新 README.md 文件。Use when the user says '更新 README' / '生成 README' / '写 README' / 'update readme'，或要求根据项目内容刷新 README 时触发。"
 ---
 
 扫描当前工作目录的项目结构、代码文件、配置文件等，自动生成或更新该目录下的 `README.md`。

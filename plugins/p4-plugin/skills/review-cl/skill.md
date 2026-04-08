@@ -1,6 +1,6 @@
 ---
 name: review-cl
-description: Review P4 pending changelist 的代码质量。Use when the user says "review CL" / "review changelist" / "审查CL" / "review下CL"，或提供了一个 CL 编号要求审查时触发。
+description: "Review P4 pending changelist 的代码质量。Use when the user says 'review CL' / 'review changelist' / '审查CL' / 'review下CL'，或提供了一个 CL 编号要求审查时触发。"
 ---
 
 对指定的 Perforce pending changelist 执行代码审查，输出结构化的 review 报告。

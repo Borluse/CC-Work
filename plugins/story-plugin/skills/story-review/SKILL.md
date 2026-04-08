@@ -1,6 +1,6 @@
 ---
 name: story-review
-description: Review 需求或者代码。TRIGGER: 当用户说"开始 Review"、"审查代码"、"检查实现"时使用。
+description: "Review 需求或者代码。TRIGGER: 当用户说'开始 Review'、'审查代码'、'检查实现'时使用。"
 user-invocable: false
 ---
 
