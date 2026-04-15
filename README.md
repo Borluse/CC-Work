@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v2.13.0)
+### story-plugin (v3.0.0)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -19,6 +19,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | `story-learn` | 从设计文档提炼方法论写入 library |
 | `story-consolidate` | 根据实际代码合并整理需求文档 |
 | `story-wiki` | 从设计文档生成精简的 Wiki 文档 |
+| `story-epic` | 大需求拆分与规划，识别子需求依赖后逐个进入设计 |
 
 **Agents：**
 
@@ -39,7 +40,7 @@ Git 工具插件，提供自动化提交和文档生成功能。
 | `readme-update` | 根据项目内容生成或更新 README |
 | `update-version` | 根据上下文更新插件版本号、同步 README，可选提交推送 |
 
-### p4-plugin (v1.0.1)
+### p4-plugin (v1.1.3)
 
 Perforce 工具插件，提供 P4 changelist 代码审查功能。
 
@@ -57,7 +58,7 @@ Perforce 工具插件，提供 P4 changelist 代码审查功能。
 plugins/
   story-plugin/             # 需求生命周期管理插件
     agents/                 # UE5 专家 Agent
-    skills/                 # 设计、实现、Review 等 Skill
+    skills/                 # 设计、实现、Review、Epic 拆分等 Skill
   git-plugin/               # Git 工具插件
     skills/                 # 提交、README 更新等 Skill
   p4-plugin/                # Perforce 工具插件
