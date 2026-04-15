@@ -11,6 +11,7 @@ description: 需求工作流入口。TRIGGER WHEN 根据用户描述自动路由
 
 | 路由目标 | 适用场景 |
 |---|---|
+| `/story-epic` | 大需求拆分、整体规划、多个子需求的拆分与依赖分析（如新Boss开发、新系统开发） |
 | `/story-design` | 新需求、分析需求、拆解功能、设计方案、改代码、改设计、改需求 |
 | `/story-implement` | 开始实现、写代码、编码|
 | `/story-review` | review、审查、检查 |

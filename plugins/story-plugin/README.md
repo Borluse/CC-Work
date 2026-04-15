@@ -2,7 +2,7 @@
 
 需求生命周期管理插件：通过 `/story` 路由入口，将需求从设计→实现→Review→经验沉淀的完整流程拆分为独立的 skill。
 
-**版本**: 2.13.0
+**版本**: 3.0.0
 
 ## 功能特性
 
@@ -13,6 +13,7 @@
 - `/story-learn` 从设计或实现中提炼可复用方法论
 - `/story-consolidate` 根据实际代码合并整理需求文档
 - `/story-wiki` 从设计文档生成精简的 Wiki 文档
+- `/story-epic` 大需求拆分与规划，识别子需求依赖关系后逐个进入设计流程
 
 ## 项目结构
 
@@ -30,5 +31,6 @@ story-plugin/
     ├── story-learn/          # 经验提炼
     ├── story-review/         # 代码审查
     ├── story-consolidate/    # 文档整理合并
-    └── story-wiki/           # Wiki 文档生成
+    ├── story-wiki/           # Wiki 文档生成
+    └── story-epic/           # 大需求拆分与规划
 ```
