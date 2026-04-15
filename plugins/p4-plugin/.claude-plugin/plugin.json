@@ -1,11 +1,11 @@
 {
   "name": "p4-plugin",
-  "version": "1.0.1",
+  "version": "1.1.3",
   "author": {
     "name": "borlusezhao"
   },
   "category": "开发工具",
   "skills": [
-    "./skills/review-cl"
+    "./skills/p4-review-cl"
   ]
 }

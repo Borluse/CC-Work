@@ -1,19 +1,13 @@
 ---
 name: story-implement
-description: 根据设计文档实现代码。TRIGGER: 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用
-user-invocable: false
+description: 根据设计文档实现代码。TRIGGER WHEN 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用
 ---
 
 根据设计文档实现代码。
 
 ## 实现规则
 
-- 如果是C++代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
-
-### 文件只读处理
-
-- 发现文件是只读时，先通过 p4v checkout 再编辑
-- 参考 `.agent/library/p4.md`
+- **必须** 加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
 
 ### Phase 1 理解与确认
 

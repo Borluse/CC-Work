@@ -1,6 +1,6 @@
 ---
 name: story
-description: 需求工作流入口。TRIGGER: 根据用户描述自动路由到子流程：设计(design)、实现(implement)、审查(review)、经验提炼(learn)。 
+description: 需求工作流入口。TRIGGER WHEN 根据用户描述自动路由到子流程：设计(design)、实现(implement)、审查(review)、经验提炼(learn)。 
 ---
 
 # Story 路由
