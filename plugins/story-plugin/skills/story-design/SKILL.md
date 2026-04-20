@@ -28,14 +28,19 @@ description: 理解拆解需求并生成设计文档。TRIGGER WHEN 当用户需
 - 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 这个文件获取知识。
 - 当需要设计C++代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
 
-### Phase 0 检查 Epic 上下文（可选）
+### Phase 0 检查 Epic / TDD 上下文（可选）
 
 - 如果用户提供了 Epic 文档路径或提及了某个需求点编号：
   1. 读取 Epic 文档（`.agent/story/<slug>/Epic_*.md`）
   2. 定位到对应的需求点章节，提取已有的需求描述作为初始输入
   3. 将 Epic 中该需求点的完整内容作为 Phase 1 的起点，跳过已明确的部分
   4. 向用户确认：「Epic 中的需求描述是否仍然准确？有无需要修改？」
-- 如果没有 Epic 上下文，正常进入 Phase 1。
+- 如果用户提供了 TDD 文档路径或提及了 TDD：
+  1. 读取 TDD 文档（`.agent/story/<slug>/TDD_*.md`）
+  2. 提取已有的技术设计描述作为初始输入
+  3. 将 TDD 中的内容作为 Phase 1 的起点，跳过已明确的部分
+  4. 向用户确认：「TDD 中的描述是否仍然准确？有无需要修改？」
+- 如果没有 Epic 或 TDD 上下文，正常进入 Phase 1。
 
 ### Phase 1 理解需求
 
