@@ -5,26 +5,7 @@ description: 大需求拆分与规划。TRIGGER WHEN 当用户有一个大需求
 
 大需求拆分：接收一个大的开发需求，整体分析后拆成多个独立的 story 需求点，识别复用/依赖关系，输出规划文档。
 
-## ⚠️ 强制要求：使用 subagent 执行
-
-**你必须使用 Agent tool 来 spawn `story:ue5-expert` subagent 执行拆分任务。**
-**严禁在主会话中直接执行探索代码或设计逻辑。**
-
-### 执行步骤
-
-1. 主会话完成 Phase 1（理解大需求、确认范围）
-2. 收集完信息后，调用 Agent tool，参数如下：
-   - `subagent_type`: `story:ue5-expert`
-   - `prompt`: 包含以下全部内容的完整指令：
-     - 用户的大需求描述
-     - 已确认的范围和约束
-     - 下方「拆分规则」章节的全部内容
-3. 等待 subagent 返回结果后，将文档路径和摘要呈现给用户
-4. 提示用户可逐个调用 `/story-design` 对各需求点做详细设计
-
----
-
-## 拆分规则（传递给 subagent）
+## 拆分规则
 
 - 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 获取知识
 - 当涉及 C++ 代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
