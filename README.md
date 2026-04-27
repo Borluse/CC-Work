@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v3.3.2)
+### story-plugin (v3.4.0)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -51,6 +51,17 @@ Perforce 工具插件，提供 P4 changelist 代码审查功能。
 |-------|------|
 | `review-cl` | 对 P4 pending changelist 执行代码审查 |
 
+### obsidian-plugin (v1.0.0)
+
+Obsidian vault 管理插件，通过 obsidian-cli 对 Markdown 笔记进行自动化操作。
+
+**Skills：**
+
+| Skill | 说明 |
+|-------|------|
+| `obsidian` | 通过 obsidian-cli 对 vault 进行搜索、创建、移动、删除等操作 |
+| `docgen` | 从代码生成符合 Obsidian 规范的技术文档 |
+
 ## 项目结构
 
 ```
@@ -64,6 +75,8 @@ plugins/
     skills/                 # 提交、README 更新等 Skill
   p4-plugin/                # Perforce 工具插件
     skills/                 # CL 审查等 Skill
+  obsidian-plugin/          # Obsidian vault 管理插件
+    skills/                 # obsidian 操作、文档生成等 Skill
 ```
 
 ## 使用方式
