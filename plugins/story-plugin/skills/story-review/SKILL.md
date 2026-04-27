@@ -2,6 +2,10 @@
 name: story-review
 description: "Review 需求或者代码。TRIGGER: 当用户说'开始 Review'、'审查代码'、'检查实现'时使用。"
 ---
+
+
+- **必须** 加载 skills/common/basic.md 获取必要信息
+
 **强制要求** ：使用 subagent 执行
 
 ## Review 规则

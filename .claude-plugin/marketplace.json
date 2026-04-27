@@ -36,6 +36,17 @@
       "category": "开发工具",
       "keywords": ["perforce", "p4", "code-review", "changelist"],
       "tags": ["perforce", "p4", "version-control", "code-review"]
+    },
+    {
+      "name": "obsidian-plugin",
+      "source": "./plugins/obsidian-plugin",
+      "description": "Obsidian vault 管理插件：通过 obsidian-cli 对 Markdown 笔记进行搜索、创建、移动、删除等自动化操作，并支持基于代码生成 Obsidian 文档",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": ["Obsidian", "笔记", "Markdown", "vault", "docgen"],
+      "tags": ["obsidian", "notes", "markdown", "documentation"]
     }
   ]
 }
