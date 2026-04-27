@@ -3,6 +3,8 @@ name: story-tdd
 description: "生成tdd文档。TRIGGER: 当用户说'生成tdd'、'总结为tdd'、'写tdd文档'、'导出tdd'时使用。"
 ---
 
+- **必须** 加载 skills/common/basic.md 获取必要信息
+
 读取 story 目录下的文档，生成 tdd 文档。
 
 Wiki 文档的目标读者是项目组其他成员（策划、程序、QA），要求语言简洁、减少冗余、禁止哲学说明、实事求是。

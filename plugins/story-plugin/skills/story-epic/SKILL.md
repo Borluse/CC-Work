@@ -5,10 +5,7 @@ description: 大需求拆分与规划。TRIGGER WHEN 当用户有一个大需求
 
 大需求拆分：接收一个大的开发需求，整体分析后拆成多个独立的 story 需求点，识别复用/依赖关系，输出规划文档。
 
-## 拆分规则
-
-- 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 获取知识
-- 当涉及 C++ 代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
+- 加载 skills/common/basic.md 获取知识
 
 ### Phase 1 理解大需求
 

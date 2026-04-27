@@ -4,6 +4,7 @@ description: "根据实际代码合并整理需求文档。TRIGGER: 当用户说
 ---
 
 将某个 story 目录下的多份需求文档，根据实际代码合并为一份总览文档。
+- 加载 skills/common/basic.md 获取知识
 
 ## ⚠️ 强制要求：使用 subagent 执行
 
@@ -22,12 +23,6 @@ description: "根据实际代码合并整理需求文档。TRIGGER: 当用户说
 3. 等待 subagent 返回结果后，将文档路径和关键差异摘要呈现给用户
 
 ---
-
-## 合并规则（传递给 subagent）
-
-- 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 获取知识
-- 当涉及 C++ 代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
-
 ### Phase 1 定位目标
 
 1. 扫描 `.agent/story/` 列出所有 story 目录
