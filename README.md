@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v3.6.3)
+### story-plugin (v3.7.0)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -13,15 +13,14 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | Skill | 说明 |
 |-------|------|
 | `story` | 需求工作流入口 — 根据描述自动路由到子流程 |
-| `story-design` | 需求设计 — 理解拆解需求并生成设计文档 |
-| `story-implement` | 需求实现 — 根据设计文档编码实现 |
+| `story-tdd` | 大需求拆分与规划，生成 TDD 文档 |
+| `story-story` | 整理清理原始需求文档 |
+| `story-design` | 单个需求点设计 — 理解拆解需求并生成设计文档 |
+| `story-implement` | 编码实现 — 根据设计文档或临时需求实现代码 |
 | `story-review` | 需求/代码 Review |
-| `story-learn` | 从设计文档或上下文提炼方法论写入 library |
 | `story-consolidate` | 根据实际代码合并整理需求文档 |
 | `story-wiki` | 从设计文档生成精简的 Wiki 文档 |
-| `story-epic` | 大需求拆分与规划，识别子需求依赖后逐个进入设计 |
-| `story-tdd` | 从设计文档生成 TDD 文档 |
-| `story-story` | 整理清理需求文档 |
+| `story-learn` | 从上下文提炼可复用方法论写入 library |
 
 **Agents：**
 

@@ -9,14 +9,16 @@ description: 需求工作流入口。TRIGGER WHEN 根据用户描述自动路由
 
 ## 路由表
 
-| 路由目标 | 适用场景 |
-|---|---|
-| `/story-epic` | 大需求拆分、整体规划、多个子需求的拆分与依赖分析（如新Boss开发、新系统开发） |
-| `/story-design` | 新需求、分析需求、拆解功能、设计方案、改代码、改设计、改需求 |
-| `/story-implement` | 开始实现、写代码、编码|
-| `/story-review` | review、审查、检查 |
-| `/story-learn` | 提炼方法论、沉淀经验、写入 library |
-| `/story-consolidate` | 整理文档、合并文档、根据代码整理需求、生成总览文档 |
+| 路由目标 | 职责 | 适用场景 |
+|---|---|---|
+| `/story-tdd` | 大需求拆分与 TDD 文档 | 拿到一个大需求（如新 Boss、新系统），需要整体理解、拆分子需求、产出 TDD 文档 |
+| `/story-story` | 整理原始需求 | 用户粘贴了一段原始需求文本，需要清理格式、生成 slug、存入需求目录 |
+| `/story-design` | 单个需求点设计 | 对单个需求点进行需求理解、方案设计、产出设计文档 |
+| `/story-implement` | 编码实现 | 设计文档已就绪，开始写代码；或临时修改代码 |
+| `/story-review` | 审查 | Review 设计文档或代码实现 |
+| `/story-consolidate` | 文档整合 | 多份需求文档合并为一份总览，以实际代码为准去重校对 |
+| `/story-wiki` | 生成 Wiki | 从设计/总览文档生成面向团队的精简 Wiki |
+| `/story-learn` | 提炼方法论 | 从对话上下文或 story 文档中提炼可复用模式写入 library |
 
 ## 流程
 
