@@ -4,6 +4,19 @@
 # 目录简介
 
 文档都在工作目录的 `.agent`下
+目录结构如下：
+.agent
+├── library
+└── story
+    └── 大需求
+        ├── wiki 
+        ├── archive
+        ├── Review
+        │   └── 需求1_代码Review.md
+        ├── TDD_大需求.md
+        ├── 需求1_需求描述.md
+        ├── 总览.md
+        └── 原始需求.md
 
 - slug : 表示一个短语用来描述一组需求，例如`飞行射击怪`
 - `.agent/story/<slug>`: 表示一组需求所在的目录
