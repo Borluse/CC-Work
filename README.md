@@ -49,7 +49,7 @@ Perforce 工具插件，提供 P4 changelist 代码审查功能。
 
 | Skill | 说明 |
 |-------|------|
-| `review-cl` | 对 P4 pending changelist 执行代码审查 |
+| `p4-review-cl` | 对 P4 pending changelist 执行代码审查 |
 
 ### obsidian-plugin (v1.0.0)
 
@@ -77,6 +77,7 @@ plugins/
     skills/                 # CL 审查等 Skill
   obsidian-plugin/          # Obsidian vault 管理插件
     skills/                 # obsidian 操作、文档生成等 Skill
+opencode.css                # VSCode Markdown Preview 暗色主题
 ```
 
 ## 使用方式
