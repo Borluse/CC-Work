@@ -5,6 +5,7 @@ description: 理解拆解需求并生成设计文档。TRIGGER WHEN 当用户需
 
 - **必须** 加载 `skills/common/basic.md`
 - 如果用户提供了 TDD 文档路径或提及了 TDD：加载 `tdd-instruct.md`
+- 过程中如有设计变更，同步修改tdd文档
 
 ### Phase 1 理解需求
 
