@@ -57,8 +57,8 @@ D:\Work\.agent
 - 总是向用户询问当前slug
 
 # 上下文获取
-- 与项目有关的设计，代码，规则等，加载 `.agent/library/overall.md` 这个文件获取知识。
-- 当需要设计C++代码，加载 `.agent/library/common/ue5-cpp-rule.md` 获取规范
+- 加载 `.agent/library/overall.md` 这个文件获取项目知识。
+- 加载 `.agent/library/common/ue5-cpp-rule.md` 获取代码规范
 
 # 文档先行规则
 任何与需求文档描述不一致的代码变更，或用户要求修改内容，或讨论中发生需求变化。**必须先更新需求文档对应章节，再修改源代码**。

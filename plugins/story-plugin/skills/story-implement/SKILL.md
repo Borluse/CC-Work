@@ -6,7 +6,7 @@ description: 根据设计文档实现代码。TRIGGER WHEN 当用户已完成需
 根据设计文档实现代码。
 
 - **必须** 加载 skills/common/basic.md 获取必要信息
-
+- **必须** 加载 `.agent/library/common/ue5-cpp-rule.md` 获取代码规范
 
 # Phase 1 理解与确认
 
