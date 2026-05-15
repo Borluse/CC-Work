@@ -1,0 +1,73 @@
+# 代码 Review 报告数据骨架（YAML）
+# 文本内联：`code` 渲染为代码块；**strong** 渲染为高亮粗体；其余 HTML 字符自动转义。
+
+page_title: "<报告标题 · 浏览器 tab>"
+doc_id: R-YYYY-NNNN
+module_path: "<模块路径,如 Foo / Bar / Baz>"
+alert: "<顶部告警短语,如 Action Required · 阻塞项>"
+
+header:
+  eyebrow_num: "№ NN"
+  eyebrow: "Code Review · Internal · Engineering"
+  title_accent: "<花体强调词>"
+  title_main: "<黑体主标题>"
+  subtitle: "<副标题: 模块/范围>"
+  lede: "<导语: 一两句概括对齐情况与主要风险,支持 `code` 与 **strong**>"
+
+  # tint 可选: tint-accent / tint-crit / tint-warn / tint-opt / tint-info
+  # 长字段加 span2: true 跨两列；紧急值可加 dd_class: crit
+  meta:
+    - { label: "<标签>", value: "<值>", tint: tint-accent }
+    - { label: "<标签>", value: "<紧急值>", tint: tint-crit, dd_class: crit }
+    - label: "<标签>"
+      value:
+        - "<多行第 1 项>"
+        - "<多行第 2 项>"
+      tint: tint-info
+      span2: true
+
+summary:
+  paragraphs:
+    - "<总评段落: 概述对齐情况、改动范围、主要结论>"
+  # severity: crit / warn / opt
+  key_risks:
+    - { severity: crit, label: "<风险标签>", text: "<必改项简述>" }
+    - { severity: warn, label: "<风险标签>", text: "<待确认项简述>" }
+
+issues:
+  crit:
+    - id: R1
+      tag: "<≤3字短词>"
+      file: "<文件名>"
+      line: "<L 行号区间>"
+      desc: "<问题描述: 现象、根因、影响>"
+      fix: "<修复建议: 具体到代码/字段>"
+  warn:
+    - id: R2
+      tag: "<≤3字短词>"
+      file: "<文件名>"
+      line: "<L 行号区间>"
+      desc: "<问题描述>"
+      fix: "<修复建议>"
+  opt:
+    - id: R3
+      tag: "<≤3字短词>"
+      file: "<文件名>"
+      line: "<L 行号区间>"
+      desc: "<问题描述>"
+      fix: "<修复建议>"
+  revoked:
+    - "<已撤销项: 经核对不再视为问题的条目>"
+
+verdict:
+  title: "<结论前缀>"
+  title_em: "<结论花体词>"
+  options:
+    - { text: "通过 / 可以提交" }
+    - { text: "有必须修改项 — 修改后重新 Review", active: true }
+  status_big: "<右上角圆章主词,如 RESUBMIT / APPROVED>"
+  status_small: "<圆章副词,如 R1 · BLOCKING>"
+
+footer:
+  changelog: "YYYY-MM-DD — <变更说明>"
+  end: "— end of report —"

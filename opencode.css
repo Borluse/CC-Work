@@ -1,0 +1,206 @@
+/*
+ * OpenCode Theme for VSCode Markdown Preview
+ * Synced with OpenCode TUI default palette (v1.2.27)
+ * Dark theme — AC Visa Bento 配色
+ * Based on nxxxsooo  https://github.com/nxxxsooo/opencode-themes
+ */
+
+:root {
+  /* ==========================================================
+   * 5-Color Palette —— 全文件只使用这 5 个颜色
+   * 调色盘来源：AC Visa Bento+（深青底 + 鲜绿标题 + 金黄强调 + 暖米正文）
+   * ========================================================== */
+  --c-accent:  rgb(69, 182, 121);   /* vivid-green      —— 强调：加粗、斜体、表头文字、表格首列、引用边、hover */
+  --c-primary: #F2C53Dff;   /* golden-yellow    —— 交互：标题、H 前缀、链接、列表 marker */
+  --c-text:    #F0DED4ff;   /* warm-cream-light —— 正文、代码文字 */
+  --c-muted:   #53443bff;   /* cocoa-brown      —— 弱化：删除线、所有边框、inline code 背景、hover 行、选区（A68776 混 50% 黑派生） */
+  --c-bg:      rgb(19, 22, 22);   /* dark-teal-gray   —— 背景：body、blockquote、pre、奇行 */
+}
+
+body {
+  font-size: 15px;
+  color: var(--c-text);
+  line-height: 1.8;
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  padding-left: 2em;
+}
+
+/* Typography
+-------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--c-primary);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-left: -22px;
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-right: 0.6em;
+  vertical-align: baseline;
+  letter-spacing: 0.02em;
+}
+
+h1::before { content: "H1"; }
+h2::before { content: "H2"; }
+h3::before { content: "H3"; }
+h4::before { content: "H4"; }
+h5::before { content: "H5"; }
+h6::before { content: "H6"; }
+
+h1 {
+  margin-top: 1.6em;
+  font-size: 2em;
+  border-bottom: 1px solid var(--c-muted);
+  padding-bottom: 8px;
+}
+
+h2 {
+  margin-top: 1.8em;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin-top: 1.5em;
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+strong, b {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+em {
+  color: var(--c-accent);
+}
+
+del {
+  color: var(--c-muted);
+}
+
+/* Links */
+a {
+  color: var(--c-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--c-accent);
+  text-decoration: underline;
+}
+
+/* Lists */
+ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+ol {
+  padding-left: 1.5em;
+}
+
+li::marker {
+  color: var(--c-primary);
+}
+
+/* Blockquote */
+blockquote {
+  margin-left: 0;
+  padding: 12px 16px;
+  border-left: 4px solid var(--c-accent);
+  background-color: var(--c-bg);
+  border-radius: 0 8px 8px 0;
+  color: var(--c-text);
+}
+
+/* Code */
+code, pre {
+  font-size: 0.9em;
+}
+
+code {
+  background: var(--c-muted);
+  color: var(--c-text);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+pre {
+  background: var(--c-bg);
+  border: 1px solid var(--c-muted);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 1.5em;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Tables */
+table {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 10px 16px;
+  line-height: 1.5;
+  vertical-align: top;
+  border: 1px solid var(--c-muted) !important;
+  background-clip: padding-box;
+}
+
+table th {
+  font-weight: 700;
+  color: var(--c-accent);
+  /* 派生：muted 混 50% 黑，让斜线纹压暗，避免喧宾夺主 */
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    color-mix(in srgb, var(--c-muted), black 50%) 3px,
+    color-mix(in srgb, var(--c-muted), black 50%) 5px
+  );
+}
+
+table td:first-child {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+table tbody tr:nth-child(even) td {
+  /* 派生：基色 +8% 白，形成轻微斑马纹 */
+  background-color: color-mix(in srgb, var(--c-bg), white 8%);
+}
+
+table tbody tr:nth-child(odd) td {
+  background-color: var(--c-bg);
+}
+
+table tbody tr:hover td {
+  background-color: var(--c-muted);
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--c-muted);
+  margin: 24px 0;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--c-muted);
+}
