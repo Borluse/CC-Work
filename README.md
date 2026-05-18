@@ -4,7 +4,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 
 ## 插件列表
 
-### story-plugin (v3.7.5)
+### story-plugin (v3.8.0)
 
 需求生命周期管理插件，覆盖需求从设计到实现到 Review 的完整流程。
 
@@ -77,7 +77,6 @@ plugins/
     skills/                 # CL 审查等 Skill
   obsidian-plugin/          # Obsidian vault 管理插件
     skills/                 # obsidian 操作、文档生成等 Skill
-opencode.css                # VSCode Markdown Preview 暗色主题
 ```
 
 ## 使用方式
