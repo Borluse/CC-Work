@@ -3,7 +3,7 @@ name: story-tdd
 description: "大需求拆分与规划，生成 TDD 文档。TRIGGER: 当用户说'生成tdd'、'写tdd文档'、'导出tdd'、'拆分需求'、'大需求规划'、'epic'时使用。"
 ---
 
-- **必须** 加载 skills/common/basic.md 获取必要信息
+- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息
 
 # Phase 1 
 

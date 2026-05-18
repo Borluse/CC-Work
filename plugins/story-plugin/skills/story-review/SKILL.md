@@ -4,7 +4,7 @@ description: "Review 需求或者代码。TRIGGER: 当用户说'开始 Review'�
 ---
 
 
-- **必须** 加载 skills/common/basic.md 获取必要信息
+- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息
 **强制要求** ：使用 `ue5-reviewer` agent 进行Review
 
 - 找用户了解是review代码还是review需求

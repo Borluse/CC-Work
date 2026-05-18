@@ -3,7 +3,7 @@ name: story-wiki
 description: "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'时使用。"
 ---
 
-**必须** 加载 skills/common/basic.md 获取必要信息
+**必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息
 **必须** 使用 `story:ue5-expert` subagent 执行文档生成。**
 
 - 从 story 目录下的总览文档或需求文档，提取核心信息生成面向团队阅读的 Wiki 文档。

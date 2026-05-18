@@ -3,30 +3,12 @@ name: story-design
 description: 理解拆解需求并生成设计文档。TRIGGER WHEN 当用户需要分析需求、理解需求、拆解功能、产出边界，根据项目情况书写设计文档。
 ---
 
-### Phase 0 
-- **必须** 加载 `skills/common/basic.md`
-- 如果用户提供了 TDD 文档路径或提及了 TDD：加载 `tdd-instruct.md`
-- 过程中如有设计变更，同步修改tdd文档
+### Phase 1: 需求理解与方案设计
+- 加载依赖：`${CLAUDE_SKILL_DIR}/../common/basic.md`，`${CLAUDE_SKILL_DIR}/../common/gamedesign.md`。如有 TDD 则加载 `./tdd-instruct.md`。
+- 行为：从 UE5 系统策划角度分析功能边界、测试用例，不涉及具体代码细节。
+- 约束：梳理出所有未决的设计分歧，**并向用户提出澄清问题，最终输出整体结论后，等待确认后再进入下一步。**
 
-### Phase 1 理解需求
-
-从ue5专业策划的角度，从如下的方面进行需求理解,
-  - 需求的目的
-  - 需求的设计边界，功能边界，
-  - 需求的测试方式，测试场景
-
-使命对齐：
-**不要**设计到具体的代码细节，本阶段只对其需求和用户意图
-**必须**向用户提出澄清问题，并与用户对齐需求理解。
-**必须**得到用户的明确确认，才能进入下一步。
-
-### Phase 2 设计
-
-- 加载 skills\common\gamedesign.md 以了解如何进行游戏设计
-**必须**得到用户的明确确认，才能进入下一步。
-
-### Phase 3 更新设计文档
-
-- 加载 `./references/document-template.md` 来生成文档。
-- 写入需求文件中
-- 提示用户：可进入实现阶段或 Review 阶段。
+### Phase 2: 更新设计文档
+- 加载模板：`.agent/references/document-template.md`。
+- 行为：将确认后的方案写入对应的需求文件中。同步更新 TDD 文档（如有变更）。
+- 结束：提示用户可进入实现阶段。
