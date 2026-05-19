@@ -60,6 +60,7 @@ git remote -v 2>/dev/null | head -1
 ### 4. 生成 / 更新 README.md
 
 根据收集到的信息生成 README。
+只更新或生成工程根目录下的README文件
 
 **如果是全新生成**，使用以下结构：
 
