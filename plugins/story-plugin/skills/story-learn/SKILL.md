@@ -18,7 +18,7 @@ description: "从设计文档或当前上下文提炼可复用方法论写入 li
 
 ### 1. 读取 library 现状
 
-读取 `.agent/library/overall.md` 及相关子文档，了解已有内容。
+若本次会话尚未读过 `.agent/library/overall.md` 及相关子文档，则读取一次了解已有内容；已读过则跳过。
 
 ### 2. 提炼并展示
 

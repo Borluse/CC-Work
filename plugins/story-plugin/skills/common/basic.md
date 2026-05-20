@@ -37,8 +37,8 @@ D:\Work\.agent
 - 在开启新任务或缺失 slug 上下文时，必须向用户确认当前的 slug 名称。
 
 # 上下文获取
-- 加载 `.agent/library/overall.md` 这个文件获取项目知识。
-- 仅当任务明确涉及读取和写入代码块时，才加载 `.agent/library/common/ue5-cpp-rule.md` 获取代码规范。
+- 若本次会话尚未读过 `.agent/library/overall.md`，则加载一次获取项目知识；已加载则跳过。
+- 仅当任务明确涉及读取和写入代码块时，才考虑加载 `.agent/library/common/ue5-cpp-rule.md` 获取代码规范；若本次会话已读过则跳过。
 
 # 文档先行规则
 任何实质性的变更（包括但不限于逻辑分支、数据结构、接口签名、UE元数据等），必须先更新对应的需求文档及总览，再修改源代码。

@@ -9,7 +9,7 @@ description: 根据设计文档或临时需求实现代码修改。
 ---
 
 # 核心前置准备
-- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息。
+- **若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md`，则加载一次获取必要信息；已加载则跳过。
 
 # Phase 1: 需求分类与确认
 

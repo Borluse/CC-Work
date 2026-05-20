@@ -3,7 +3,7 @@ name: story-tdd
 description: "大需求/Epic拆分规划并生成TDD文档。TRIGGER: 当用户说'生成tdd'、'写tdd文档'、'拆分需求'、'大需求规划'时使用。"
 ---
 
-- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息。
+- **若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md`，则加载一次获取必要信息；已加载则跳过。
 
 # 1. 统一文档与图示规范
 - **极简前置**：用 1~3 句自然语言说清核心机制（触发条件 → 状态转换 → 结果），不堆砌列表。

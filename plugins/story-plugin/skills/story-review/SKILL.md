@@ -4,7 +4,7 @@ description: "Review 需求设计或代码实现。TRIGGER: 当用户说'开始 
 ---
 
 # 核心前置与工具
-- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 获取必要信息。
+- **若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md`，则加载一次获取必要信息；已加载则跳过。
 - **强制要求**：使用 `ue5-reviewer` agent 进行 Review。
 - **上下文检索**：优先通过 `fd`/`rg` 检查当前分支或暂存区内活跃的 `需求文档.md` 或代码文件。若上下文极度明确，直接进入 Step 1，无需向用户追问类型。
 

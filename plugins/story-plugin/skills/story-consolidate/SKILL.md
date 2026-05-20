@@ -3,7 +3,7 @@ name: story-consolidate
 description: "根据实际代码合并整理需求文档。TRIGGER: 当用户说'整理文档'、'合并文档'、'根据代码整理需求'、'生成总览文档'时使用。"
 ---
 
-- **必须** 加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`
+- **若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md`，则加载一次；已加载则跳过。
 
 ### 原则对齐
 - 目的是为了某个 slug 下需求文档整合在一起。
