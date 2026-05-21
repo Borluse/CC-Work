@@ -4,8 +4,8 @@ description: "理解拆解需求并生成设计文档。TRIGGER WHEN: 分析需�
 ---
 
 # 核心前置：自动化上下文检索
-- **若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md` 与 `${CLAUDE_SKILL_DIR}/../common/gamedesign.md`，则加载一次；已加载则跳过。
-- **静默探索**：进入 Phase 1 前，先自动使用 `fd`/`rg` 在工作区检索关联的 `TDD_*.md` 或是其他前置需求文档。若存在，直接提取其中的需求/技术设计作为本任务的既定事实起点，跳过重复确认。
+- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 与 `${CLAUDE_SKILL_DIR}/../common/gamedesign.md`（同会话已读则跳过）。
+- **静默探索**：按 `basic.md` 的「Slug 检索流程」定位目标 slug 目录后，在该目录下用 `fd`/`rg` 检索关联的 `TDD_*.md` 或前置需求文档。若存在，直接提取其中的需求/技术设计作为本任务的既定事实起点，跳过重复确认。
 
 ### Phase 1: 需求理解与方案设计（UE5 策划视角）
 1. 融合用户当前输入与前置探索到的 TDD/需求信息。

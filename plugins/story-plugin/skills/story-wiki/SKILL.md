@@ -3,8 +3,8 @@ name: story-wiki
 description: "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'时使用。"
 ---
 
-**若本次会话尚未读过** `${CLAUDE_SKILL_DIR}/../common/basic.md`，则加载一次获取必要信息；已加载则跳过
-**必须** 使用 `story:ue5-expert` subagent 执行文档生成。**
+- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
+- **必须** 使用 `story:ue5-expert` subagent 执行文档生成。
 
 - 从 story 目录下的总览文档或需求文档，提取核心信息生成面向团队阅读的 Wiki 文档。
 
@@ -15,8 +15,8 @@ description: "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说
 
 ### Phase 1 定位源文档
 
-1. 找用户询问slug
-2. 读取slug下的总览文件，没有的话提示用户先用Consolidate命令，并结束流程
+1. 询问用户 slug，并按 `basic.md` 的「Slug 检索流程」验证存在性。
+2. 读取该 slug 下的总览文件；不存在则提示用户先用 `/story-consolidate` 生成，并结束流程。
 
 **必须**得到用户的明确确认，才能进入下一步。
 

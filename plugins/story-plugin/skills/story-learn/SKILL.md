@@ -3,6 +3,8 @@ name: story-learn
 description: "从设计文档或当前上下文提炼可复用方法论写入 library。TRIGGER: 当用户说'提炼方法论'、'沉淀经验'、'learn from story'、'总结设计模式'、'把这个写入library'时使用。"
 ---
 
+- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
+
 从当前对话上下文或 `.agent/story/` 下的设计文档中，提炼可复用模式写入 `.agent/library/`。
 
 ## 规则
@@ -12,7 +14,7 @@ description: "从设计文档或当前上下文提炼可复用方法论写入 li
   - ✅ `状态查询（存活/战斗/仇恨）→ IsAlive`
   - ❌ `IsAlive() / IsCombat() / GetMainHateTarget() - 主仇恨目标`
 - 只提炼**可跨需求复用**的模式，需求特有逻辑不提取
-- 默认从当前对话上下文提炼；用户明确指定 story 时才扫描 `.agent/story/`
+- 默认从当前对话上下文提炼；用户明确指定 story 时，按 `basic.md` 的「Slug 检索流程」定位目标 slug 目录后再扫描其下文档。
 
 ## 流程
 
