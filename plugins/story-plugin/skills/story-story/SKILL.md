@@ -11,4 +11,4 @@ description: 整理清理需求文档
 3. 生成一个 slug 候选，按 `basic.md` 的「Slug 检索流程」查重：
    - 命中已有 slug：询问用户是追加到已有 slug 还是另起新名。
    - 未命中：与用户确认 slug 名称。
-4. 将整理后的内容写入到 slug 下的 `原始需求.md`。
+4. 将整理后的内容写入到 current milestone 下的 slug 目录的 `原始需求.md`。

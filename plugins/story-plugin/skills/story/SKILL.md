@@ -1,6 +1,6 @@
 ---
 name: story
-description: 需求工作流入口。根据用户描述自动路由到对应的子流程（如需求整理、大需求拆分、设计、实现、审查、文档整合及经验提炼等）。
+description: 需求工作流入口。根据用户描述自动路由到对应的子流程
 ---
 
 - **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 与 `${CLAUDE_SKILL_DIR}/../common/gamedesign.md`（同会话已读则跳过）。
@@ -13,6 +13,7 @@ description: 需求工作流入口。根据用户描述自动路由到对应的�
 
 | 路由目标 | 职责 | 适用场景 |
 |---|---|---|
+| `/story-milestone` | Milestone 管理 | 创建、切换、列出、重命名 milestone |
 | `/story-tdd` | 大需求拆分与 TDD 文档 | 拿到一个大需求（如新 Boss、新系统），需要整体理解、拆分子需求、产出 TDD 文档 |
 | `/story-story` | 整理原始需求 | 用户粘贴了一段原始需求文本，需要清理格式、生成 slug、存入需求目录 |
 | `/story-design` | 单个需求点设计 | 对单个需求点进行需求理解、方案设计、产出设计文档；或进行临时代码修改的设计 |
