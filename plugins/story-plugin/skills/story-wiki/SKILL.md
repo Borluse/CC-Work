@@ -4,7 +4,6 @@ description: "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说
 ---
 
 - **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
-- **必须** 使用 `story:ue5-expert` subagent 执行文档生成。
 
 - 从 story 目录下的总览文档或需求文档，提取核心信息生成面向团队阅读的 Wiki 文档。
 
