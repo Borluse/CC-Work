@@ -1,6 +1,6 @@
 ---
 name: story-story
-description: 整理清理需求文档
+description: "整理清理需求文档。TRIGGER: 当用户说'整理需求'、'清理需求文档'、'生成slug'、'整理原始需求'时使用。"
 ---
 
 - **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。

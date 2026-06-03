@@ -1,6 +1,6 @@
 ---
 name: story
-description: 需求工作流入口。根据用户描述自动路由到对应的子流程
+description: "需求工作流入口。根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。"
 ---
 
 - **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md` 与 `${CLAUDE_SKILL_DIR}/../common/gamedesign.md`（同会话已读则跳过）。
