@@ -1,63 +1,24 @@
-# 使用约定（所有 story-* skill 共享）
+### 全局Step 0 - 获取全局目录 (当前会话已有信息，则跳过)
+**严格按以下顺序**判断并执行，**禁止跳步或乱序**：
+1. **显式获取**：必须通过执行 `pwd`（PowerShell 下 `Get-Location`）获取当前工作目录的绝对路径，并将其在内部标记为 `<cwd>`。
+   - **禁止**凭印象、凭历史会话、凭 plugin 安装路径猜测。
+   - **嵌套防范**：若 `<cwd>` 的父目录也存在 `.agent`，绝不以父目录为项目根；项目根永远等于本次获取到的 `<cwd>`。
+2. **统一拼接**：后续所有的路径操作（包含但不限于 Read、Write、Edit、mkdir、Bash 等工具），**均必须**严格使用 `<cwd>/<目标路径>` 进行拼接（例如 `<cwd>/.agent/...`）。
+3. **禁止回退**：拼接后的路径中**严禁出现 `..`**；一旦生成包含 `..` 的路径即视为错误，必须停止动作并重新基于 `<cwd>` 计算。
 
-任意 `story-*` skill 在执行第一步动作前，**必须**加载本文件（同会话已读则跳过）。子 skill 在 SKILL.md 顶部统一使用：
-
-> **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
-
-涉及代码规范或设计原则的 skill 可附加加载 `${CLAUDE_SKILL_DIR}/../common/gamedesign.md`。
-
-## 路径铁律（贯穿全文）
-
-1. cwd 必须通过 `pwd`（PowerShell 下 `Get-Location`）显式取得，禁止凭印象、凭历史会话、凭 plugin 安装路径猜测。
-2. 所有 `.agent/...` 路径以**相对路径**形式基于 cwd 解析；工具签名要求绝对路径时，由 Step 0 取到的 cwd 现场拼接并逐字校对。
-3. 路径中**禁止出现 `..`**；出现即视为路径错误，停止动作并重新基于 cwd 计算。
-4. **嵌套 `.agent` 警示**：若 cwd 父目录也存在 `.agent`，**绝不**以父目录为项目根；项目根永远等于 Step 0 取到的 cwd。
-
-## 运行时条件加载（加载本文件后判断执行）
-
-当本文件被加载后，**严格按以下顺序**判断并执行，**禁止跳步或乱序**：
-
-### Step 0（阻断性前置，必须最先执行）
-1. 执行 `pwd`，结果作为后续所有 `.agent/...` 路径的解析基准。
-2. 使用 Read 工具读取**相对路径** `.agent/milestones.yaml`；若文件不存在，**报错停止**，提示用户执行 `/story-milestone` 创建。
-3. 读取成功后，向用户输出：`📍 当前 milestone: <current>`。
-4. **只有完成上述三步后**，才可执行任何 slug 检索或文件操作。
-
-### Step 0.5（写入前强制校验，覆盖 Write / Edit / mkdir / Bash 等所有落盘动作）
-1. 写入路径必须以 `.agent/` 开头的相对路径传入；遵循「路径铁律」。
-2. mkdir 与 Write 必须使用同一基准——前者用相对，后者也必须用相对，**严禁**中途切换为绝对路径。
+4. **版本库确认**：查看 `<cwd>/vcs.md`（若存在），确认版本库信息，向用户输出当前版本库信息。
+5. **Milestone 获取**：使用 Read 工具读取 `<cwd>/.agent/milestones.yaml`；若文件不存在，**报错停止**，提示用户执行 `/story-milestone` 创建。
+6. **输出状态**：读取成功后，向用户输出：`📍 当前 milestone: <current>`。
+7. **守门员原则**：**只有完成上述三步后**，才可执行下述任何文件的条件加载、slug 检索或文件操作。
+8. 输出当前的`.agent`的全局路径
 
 ### Step 1（条件加载）
-| 条件 | 动作 |
-|------|------|
-| 任务涉及 C++ 代码（设计、实现、Review） | **必须**加载工程目录下 `.agent/library/common/ue5-cpp-rule.md` |
-| 工程目录下存在 `.agent/library/overall.md` | **必须**加载该文件作为项目全局上下文 |
-
+- 任务涉及 C++ 代码（设计、实现、Review）  **必须**加载cwd路径下`.agent/library/common/ue5-cpp-rule.md` 
+- cwd路径下`.agent/library/overall.md`  **必须**加载该文件作为项目全局上下文 
 以上加载遵循「同会话已读则跳过」原则。
 
 # 目录与 Milestone
-
 核心流转：原始需求 → TDD → 需求N → 总览；忽略 wiki 与 archive 目录。
-
-```
-D:\Work\.agent
-├── milestones.yaml
-├── library/
-└── story/
-    ├── 切片1/                       ← milestone 目录
-    │   ├── 2026-5-20_怪物推挤/      ← slug 目录
-    │   │   ├── wiki/
-    │   │   ├── archive/
-    │   │   ├── Review/
-    │   │   │   └── 需求1_代码Review.md
-    │   │   ├── TDD_怪物推挤.md
-    │   │   ├── 需求1_需求描述.md
-    │   │   ├── 总览.md
-    │   │   └── 原始需求.md
-    │   └── 临时快速需求/
-    └── MS10/                        ← 另一个 milestone
-        └── 2026-4-15_基础战斗/
-```
 
 ## Milestone 配置（`.agent/milestones.yaml`）
 
