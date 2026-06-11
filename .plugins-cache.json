@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "marketplaceName": "story-plugin-marketplace",
+  "manifestMtime": 1777279200733.609,
+  "createdAt": 1781182254563,
+  "plugins": [
+    {
+      "name": "story",
+      "source": "./plugins/story-plugin",
+      "description": "需求生命周期管理插件：通过 /story 路由入口，将需求从设计到实现到 Review 的完整流程拆分为独立的 skill",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "需求分析",
+        "工作流",
+        "设计",
+        "实现",
+        "review"
+      ],
+      "tags": [
+        "ue5",
+        "game-development",
+        "workflow",
+        "code-review"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin",
+      "_capabilitiesLoaded": true,
+      "version": "4.3.0",
+      "skills": [
+        {
+          "name": "story",
+          "description": "需求工作流入口。根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。",
+          "path": "skills\\story"
+        },
+        {
+          "name": "story-milestone",
+          "description": "管理 milestone（迭代切片）。TRIGGER: 当用户说'创建milestone'、'切换milestone'、'设置milestone'、'列出milestone'、'重命名milestone'时使用。",
+          "path": "skills\\story-milestone"
+        },
+        {
+          "name": "story-tdd",
+          "description": "大需求/Epic拆分规划并生成TDD文档。TRIGGER: 当用户说'生成tdd'、'写tdd文档'、'拆分需求'、'大需求规划'时使用。",
+          "path": "skills\\story-tdd"
+        },
+        {
+          "name": "story-story",
+          "description": "整理清理需求文档。TRIGGER: 当用户说'整理需求'、'清理需求文档'、'生成slug'、'整理原始需求'时使用。",
+          "path": "skills\\story-story"
+        },
+        {
+          "name": "story-design",
+          "description": "理解拆解需求并生成设计文档。TRIGGER WHEN: 分析需求、拆解功能、产出边界或书写设计文档时使用。",
+          "path": "skills\\story-design"
+        },
+        {
+          "name": "story-implement",
+          "description": "根据设计文档实现代码。TRIGGER WHEN 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用。",
+          "path": "skills\\story-implement"
+        },
+        {
+          "name": "story-review",
+          "description": "Review 需求设计或代码实现。TRIGGER: 当用户说'开始 Review'、'审查代码'、'检查实现'时使用。",
+          "path": "skills\\story-review"
+        },
+        {
+          "name": "story-consolidate",
+          "description": "根据实际代码合并整理需求文档。TRIGGER: 当用户说'整理文档'、'合并文档'、'根据代码整理需求'、'生成总览文档'时使用。",
+          "path": "skills\\story-consolidate"
+        },
+        {
+          "name": "story-wiki",
+          "description": "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'时使用。",
+          "path": "skills\\story-wiki"
+        },
+        {
+          "name": "story-learn",
+          "description": "从设计文档或当前上下文提炼可复用方法论写入 library。TRIGGER: 当用户说'提炼方法论'、'沉淀经验'、'learn from story'、'总结设计模式'、'把这个写入library'时使用。",
+          "path": "skills\\story-learn"
+        }
+      ],
+      "sourcePath": "./plugins/story-plugin",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin\\.claude-plugin\\plugin.json",
+      "agents": [
+        {
+          "name": "ue5-expert",
+          "description": "当用户需要阅读、理解或分析UE5 FPS相关的C++代码时使用此Agent。适用场景包括：解释复杂的UE5 C++类继承关系、分析FPS游戏逻辑代码、解读蓝图与C++交互代码、回答关于UE5引擎API的问题、帮助理解射击游戏中的角色控制、武器系统、弹道计算、碰撞检测等核心模块的代码实现。",
+          "path": "agents\\ue5-expert.md"
+        },
+        {
+          "name": "ue5-reviewer",
+          "description": "当用户需要对UE5 FPS项目的C++代码进行深度Review时使用此Agent。适用场景包括：审查新功能的代码设计与实现、检查代码健壮性与性能、验证是否符合项目规范、评估跨平台兼容性（DS服务器、手机、编辑器）、识别可简化或重构的部分。",
+          "path": "agents\\ue5-reviewer.md"
+        }
+      ],
+      "status": "enabled"
+    },
+    {
+      "name": "git",
+      "source": "./plugins/git-plugin",
+      "description": "Git提交插件",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "Git",
+        "提交"
+      ],
+      "tags": [
+        "git",
+        "version-control",
+        "commit"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\git-plugin",
+      "_capabilitiesLoaded": true,
+      "version": "1.1.4",
+      "skills": [
+        {
+          "name": "git-commit",
+          "description": "根据当前的待提交，生成对应的提交记录并提交。TRIGGER: 当用户需要git提交代码的时候。",
+          "path": "skills\\git-commit"
+        },
+        {
+          "name": "readme-update",
+          "description": "根据当前工作目录的代码结构和内容，自动生成或更新 README.md 文件。Use when the user says '更新 README' / '生成 README' / '写 README' / 'update readme'，或要求根据项目内容刷新 README 时触发。",
+          "path": "skills\\readme-update"
+        },
+        {
+          "name": "update-version",
+          "description": "根据上下文判断涉及哪个插件，更新其 plugin.json 版本号，同步 README，可选提交推送。TRIGGER: 当用户说'更新版本号'、'bump version'、'发版'时使用。",
+          "path": "skills\\update-version"
+        }
+      ],
+      "sourcePath": "./plugins/git-plugin",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\git-plugin\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "p4-plugin",
+      "source": "./plugins/p4-plugin",
+      "description": "Perforce 工具插件，提供 P4 pending changelist 代码审查功能",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "perforce",
+        "p4",
+        "code-review",
+        "changelist"
+      ],
+      "tags": [
+        "perforce",
+        "p4",
+        "version-control",
+        "code-review"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\p4-plugin",
+      "_capabilitiesLoaded": true,
+      "version": "1.1.3",
+      "skills": [
+        {
+          "name": "p4-review-cl",
+          "description": "Review P4 pending changelist 的代码质量。Use when the user says 'review p4 CL' / 'review p4 changelist' / '审查 p4 CL' / 'review下 p4 CL'，或提供了一个 CL 编号要求审查时触发。",
+          "path": "skills\\p4-review-cl"
+        }
+      ],
+      "sourcePath": "./plugins/p4-plugin",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\p4-plugin\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "obsidian",
+      "source": "./plugins/obsidian-plugin",
+      "description": "Obsidian vault 管理插件：通过 obsidian-cli 对 Markdown 笔记进行搜索、创建、移动、删除等自动化操作",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "Obsidian",
+        "笔记",
+        "Markdown",
+        "vault"
+      ],
+      "tags": [
+        "obsidian",
+        "notes",
+        "markdown",
+        "documentation"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\obsidian-plugin",
+      "_capabilitiesLoaded": true,
+      "version": "1.0.0",
+      "skills": [
+        {
+          "name": "obsidian",
+          "description": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
+          "path": "skills\\obsidian"
+        },
+        {
+          "name": "docgen",
+          "description": "帮助用户从代码生成 Obsidian 深度集成的技术文档 (两阶段优化版)。使用场景：(1) 需要为代码文件生成技术文档时，(2) 需要分析代码依赖关系并生成结构化文档时，(3) 需要生成符合 Obsidian 规范的 Markdown 文档时。支持 UE (Lua/C++)、Unity (C#)、Web (JS/TS) 等多种项目类型。",
+          "path": "skills\\docgen"
+        }
+      ],
+      "sourcePath": "./plugins/obsidian-plugin",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\obsidian-plugin\\.claude-plugin\\plugin.json"
+    }
+  ]
+}
