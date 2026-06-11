@@ -1,6 +1,8 @@
 ---
 name: story-design
 description: "理解拆解需求并生成设计文档。TRIGGER WHEN: 分析需求、拆解功能、产出边界或书写设计文档时使用。"
+fork: true
+model: Claude-Opus-4.6-1M
 ---
 
 # 核心前置：自动化上下文检索

@@ -1,6 +1,8 @@
 ---
 name: story-implement
 description: "根据设计文档实现代码。TRIGGER WHEN 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用。"
+fork: true
+model: deepseek-v4-pro
 ---
 
 # 核心前置：自动化上下文检索
