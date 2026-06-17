@@ -3,15 +3,16 @@ name: story-consolidate
 description: "根据实际代码合并整理需求文档。TRIGGER: 当用户说'整理文档'、'合并文档'、'根据代码整理需求'、'生成总览文档'时使用。"
 ---
 
-- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
+### Phase 0: 初始化环境
+先调用 `/story-init` 完成工作环境初始化。
+- **门禁**：`/story-init` 完成后方可继续，若已执行则跳过。
 
+### Phase 1 读取
 ### 原则对齐
 - 目的：将 slug 下需求文档整合为一份
 - 整合后旧文档 archive
 
-### Phase 1 读取
-- 按 `basic.md`「Slug 检索流程」定位 slug 目录（未指定时主动询问）。
-- 读取 slug 下所有需求文档
+- 读取 `<slug_dir>` 下所有需求文档
 - 如有总览文档则读取
 
 #### Step 2：读取实际代码

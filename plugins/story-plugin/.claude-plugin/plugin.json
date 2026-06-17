@@ -1,6 +1,6 @@
 {
   "name": "story",
-  "version": "4.3.0",
+  "version": "4.3.4",
   "description": "需求生命周期管理插件：通过 /story 路由入口，将需求从设计到实现到 Review 的完整流程拆分为独立的 skill",
   "author": {
     "name": "borlusezhao"

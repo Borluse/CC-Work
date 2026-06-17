@@ -3,7 +3,7 @@ name: story-milestone
 description: "管理 milestone（迭代切片）。TRIGGER: 当用户说'创建milestone'、'切换milestone'、'设置milestone'、'列出milestone'、'重命名milestone'时使用。"
 ---
 
-- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
+- @../common/basic.md
 
 # Milestone 管理
 

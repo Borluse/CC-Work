@@ -5,12 +5,12 @@ fork: true
 model: Claude-Opus-4.6-1M
 ---
 
-# 核心前置与工具
-- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
-- **上下文检索**：按 `basic.md`「Slug 检索流程」定位 slug 目录后，用 `fd`/`rg` 或 `ast-grep` 检索 `需求文档.md` 与相关代码。上下文明确则直接进入 Step 1。
-- 询问用户 review 代码还是 review 设计
+### Phase 0: 初始化环境
+先调用 `/story-init` 完成工作环境初始化。
+- **门禁**：`/story-init` 完成后方可继续，若已执行则跳过。
 
 # Step 1: 执行审查
+询问用户 review 代码还是 review 设计。
 仅对**本次需求相关**内容审查，严禁超纲。条目用 `R+递增数字`（R1, R2）编号。维度：
 
 - **设计 Review**：需求边界完整性 / 接口最小暴露 / 图文一致性 / 联机同步方案与风险 / 替代方案评估

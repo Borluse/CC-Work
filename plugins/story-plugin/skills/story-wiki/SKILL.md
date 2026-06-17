@@ -3,17 +3,16 @@ name: story-wiki
 description: "从设计文档生成精简的 Wiki 文档。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'时使用。"
 ---
 
-- **前置**：加载 `${CLAUDE_SKILL_DIR}/../common/basic.md`（同会话已读则跳过）。
+### Phase 0: 初始化环境
+先调用 `/story-init` 完成工作环境初始化。
+- **门禁**：`/story-init` 完成后方可继续，若已执行则跳过。
+
+### Phase 1 定位源文档
 
 从 story 目录下总览/需求文档提取核心信息，生成面向团队阅读的 Wiki。
 目标读者：项目组成员（策划、程序、QA）。语言简洁、无冗余、禁止哲学说明、实事求是。
 
-## 生成规则
-
-### Phase 1 定位源文档
-
-1. 询问 slug，按 `basic.md`「Slug 检索流程」验证存在性。
-2. 读取 slug 下总览文件；不存在 → 提示用户先用 `/story-consolidate`，结束流程。
+1. 读取 `<slug_dir>` 下总览文件；不存在 → 提示用户先用 `/story-consolidate`，结束流程。
 
 **必须**得到用户确认才进入下一步。
 
