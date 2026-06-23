@@ -20,6 +20,8 @@ user-invocable: false
 4. 定位 slug（**仅在当前 milestone 下搜索**）：
    - 在 `<cwd>/.agent/story/<milestone>/` 下查找已有 slug，**禁止搜索其他 milestone**。
    - 命中：标记为 `<slug_dir>`。
-   - 未命中（create-slug 模式）：根据用户输入提炼 slug（≤5 词中文短语），与用户确认后创建，标记为 `<slug_dir>`。
+   - 未命中（create-slug 模式）：根据用户输入提炼 slug（≤5 词中文短语），创建前需要与用户确认，标记为 `<slug_dir>`。
    - 未命中（默认/search-only）：标记 `<slug_dir>=N/A`。
 5. 将`<cwd>`, vcs, milestone 和 slug 信息简报输出给用户。
+
+6. **重要** 编辑文件需要考虑 vcs！

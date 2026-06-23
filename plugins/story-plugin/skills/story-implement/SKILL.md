@@ -1,8 +1,6 @@
 ---
 name: story-implement
 description: "根据设计文档实现代码。TRIGGER WHEN 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用。"
-fork: true
-model: deepseek-v4-pro
 ---
 
 # Phase 0: 环境初始化 [强制执行，禁止跳过]

@@ -1,8 +1,6 @@
 ---
 name: story-review
 description: "Review 需求设计或代码实现。TRIGGER: 当用户说'开始 Review'、'审查代码'、'检查实现'时使用。"
-fork: true
-model: Claude-Opus-4.6-1M
 ---
 
 ### Phase 0: 初始化环境
