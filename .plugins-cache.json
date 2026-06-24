@@ -2,7 +2,7 @@
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
   "manifestMtime": 1777279200733.609,
-  "createdAt": 1782197540738,
+  "createdAt": 1782287133222,
   "plugins": [
     {
       "name": "story",
@@ -28,7 +28,7 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin",
       "_capabilitiesLoaded": true,
-      "version": "4.3.4",
+      "version": "4.4.0",
       "skills": [
         {
           "name": "story",
@@ -54,6 +54,11 @@
           "name": "story-design",
           "description": "理解拆解需求并生成设计文档。TRIGGER WHEN: 分析需求、拆解功能、产出边界或书写设计文档时使用。",
           "path": "skills\\story-design"
+        },
+        {
+          "name": "story-explore",
+          "description": "探索代码与文档以回答用户的疑问，不产出文档。TRIGGER WHEN: 用户提问、想了解现有实现、排查问题、搞清某功能如何工作时使用。",
+          "path": "skills\\story-explore"
         },
         {
           "name": "story-implement",
