@@ -15,7 +15,8 @@ description: "Review 需求设计或代码实现。TRIGGER: 当用户说'开始 
 - **代码 Review**：UE5 规范 (GC安全、宏标签分配、RPC验证) / 代码与需求一致性 / 性能与死锁风险 / 跨平台兼容性 / 接口最小化
 
 # Step 2: 委托 ue5-reviewer 生成报告
-- 创建或使用团队成员 `reviewer`，agent 为 `ue5-reviewer`
+- 使用`ue5-reviewer`这个agent来处理
+- 需要在subagent中处理。
 
 **主 Agent 须将文件路径和需求上下文清晰传递给 `reviewer`**。由 `reviewer` 用 Write 落盘报告为 `.md`。
 - **命名**：`需求N_<标题>_设计review.md` 或 `需求N_<标题>_代码review.md`

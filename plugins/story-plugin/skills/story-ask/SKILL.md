@@ -1,5 +1,5 @@
 ---
-name: story-explore
+name: story-ask
 description: "探索代码与文档以回答用户的疑问，不产出文档。TRIGGER WHEN: 用户提问、想了解现有实现、排查问题、搞清某功能如何工作时使用。"
 ---
 
