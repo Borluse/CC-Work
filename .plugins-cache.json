@@ -2,7 +2,7 @@
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
   "manifestMtime": 1777279200733.609,
-  "createdAt": 1785488529539,
+  "createdAt": 1785501127146,
   "plugins": [
     {
       "name": "story",
@@ -28,11 +28,11 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin",
       "_capabilitiesLoaded": true,
-      "version": "4.4.3",
+      "version": "4.4.4",
       "skills": [
         {
           "name": "story",
-          "description": "需求工作流入口。根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。",
+          "description": "需求工作流入口, 根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。",
           "path": "skills\\story"
         },
         {
@@ -84,22 +84,15 @@
           "name": "story-learn",
           "description": "从设计文档或当前上下文提炼可复用方法论写入 library。TRIGGER: 当用户说'提炼方法论'、'沉淀经验'、'learn from story'、'总结设计模式'、'把这个写入library'时使用。",
           "path": "skills\\story-learn"
+        },
+        {
+          "name": "story-copy",
+          "description": "需求工作流入口, 根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。",
+          "path": "skills\\story-copy"
         }
       ],
       "sourcePath": "./plugins/story-plugin",
       "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin\\.claude-plugin\\plugin.json",
-      "agents": [
-        {
-          "name": "ue5-expert",
-          "description": "当用户需要阅读、理解或分析UE5 FPS相关的C++代码时使用此Agent。适用场景包括：解释复杂的UE5 C++类继承关系、分析FPS游戏逻辑代码、解读蓝图与C++交互代码、回答关于UE5引擎API的问题、帮助理解射击游戏中的角色控制、武器系统、弹道计算、碰撞检测等核心模块的代码实现。",
-          "path": "agents\\ue5-expert.md"
-        },
-        {
-          "name": "ue5-reviewer",
-          "description": "当用户需要对UE5 FPS项目的C++代码进行深度Review时使用此Agent。适用场景包括：审查新功能的代码设计与实现、检查代码健壮性与性能、验证是否符合项目规范、评估跨平台兼容性（DS服务器、手机、编辑器）、识别可简化或重构的部分。",
-          "path": "agents\\ue5-reviewer.md"
-        }
-      ],
       "status": "enabled"
     },
     {
