@@ -84,11 +84,6 @@
           "name": "story-learn",
           "description": "从设计文档或当前上下文提炼可复用方法论写入 library。TRIGGER: 当用户说'提炼方法论'、'沉淀经验'、'learn from story'、'总结设计模式'、'把这个写入library'时使用。",
           "path": "skills\\story-learn"
-        },
-        {
-          "name": "story-copy",
-          "description": "需求工作流入口, 根据用户描述自动路由到对应的子流程。TRIGGER WHEN: 用户描述需求时使用。",
-          "path": "skills\\story-copy"
         }
       ],
       "sourcePath": "./plugins/story-plugin",

@@ -18,7 +18,6 @@
     "./skills/story-review",
     "./skills/story-consolidate",
     "./skills/story-wiki",
-    "./skills/story-learn",
-    "./skills/story-copy"
+    "./skills/story-learn"
   ]
 }

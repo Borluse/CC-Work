@@ -30,6 +30,16 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | `ue5-expert` | UE5 FPS C++ 代码阅读专家 |
 | `ue5-reviewer` | UE5 FPS C++ 代码审查专家 |
 
+### story-lite (v0.1.1)
+
+轻量需求文档维护插件：agent 干活时同步维护需求/设计/Review 文档，设计阶段先批量提问对齐细节、确认后落盘，以设计文档为沟通媒介，支持基于文档总结工作。
+
+**Skills：**
+
+| Skill | 说明 |
+|-------|------|
+| `story-lite` | 轻量需求工作流 — 定位/需求整理/设计（先提问后落盘）/实现（文档同步）/Review（文档输出）/总结 |
+
 ### git-plugin (v1.1.4)
 
 Git 工具插件，提供自动化提交和文档生成功能。
@@ -72,6 +82,8 @@ plugins/
   story-plugin/             # 需求生命周期管理插件
     agents/                 # UE5 专家 Agent
     skills/                 # 设计、实现、Review、Epic 拆分等 Skill
+  story-lite/               # 轻量需求文档维护插件
+    skills/                 # 文档同步维护 Skill
   git-plugin/               # Git 工具插件
     skills/                 # 提交、README 更新等 Skill
   p4-plugin/                # Perforce 工具插件
