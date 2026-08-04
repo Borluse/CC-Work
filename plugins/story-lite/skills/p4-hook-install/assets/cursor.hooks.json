@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": "/usr/bin/python3 \"__PROJECT_ROOT__/.cursor/hooks/p4-edit-hook.py\"",
+        "matcher": "Write|Edit"
+      }
+    ]
+  }
+}
