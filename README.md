@@ -30,7 +30,7 @@ Claude Code 插件市场仓库，包含多个面向开发工作流的插件和 A
 | `ue5-expert` | UE5 FPS C++ 代码阅读专家 |
 | `ue5-reviewer` | UE5 FPS C++ 代码审查专家 |
 
-### story-lite (v0.1.7)
+### story-lite (v0.1.8)
 
 轻量需求文档维护插件：agent 干活时同步维护需求/设计/Review 文档，设计阶段先批量提问对齐细节、确认后落盘，以设计文档为沟通媒介，支持基于文档总结工作。
 
