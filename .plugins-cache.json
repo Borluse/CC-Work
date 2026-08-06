@@ -1,8 +1,8 @@
 {
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
-  "manifestMtime": 1777279200733.609,
-  "createdAt": 1785488529539,
+  "manifestMtime": 1785809588310.1836,
+  "createdAt": 1785921523282,
   "plugins": [
     {
       "name": "story",
@@ -215,6 +215,45 @@
       ],
       "sourcePath": "./plugins/obsidian-plugin",
       "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\obsidian-plugin\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "story-lite",
+      "source": "./plugins/story-lite",
+      "description": "轻量需求文档维护插件：agent 干活时同步维护需求/设计/Review 文档，设计阶段以设计文档为沟通媒介",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "需求",
+        "文档",
+        "review",
+        "workflow",
+        "story"
+      ],
+      "tags": [
+        "workflow",
+        "documentation",
+        "requirements"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
+      "_capabilitiesLoaded": true,
+      "version": "0.1.5",
+      "skills": [
+        {
+          "name": "story-lite",
+          "description": "轻量需求工作流（仅手动调用）：维护 .agent/story 下的需求/设计/总览/review 文档，agent 干活时同步更新文档，设计阶段以设计文档为沟通媒介，Review 输出审查文档，支持基于文档总结工作。仅当用户显式点名本技能（如 @story-lite、plugin://story-lite 或说『用 story-lite』）时才使用；不要根据任务内容自动命中，用户未点名时不要进行任何 .agent 相关操作。",
+          "path": "skills\\story-lite"
+        },
+        {
+          "name": "p4-hook-install",
+          "description": "Install or remove a project-scoped p4 edit hook (runs p4 edit before editing to unlock read-only Perforce files) into a target project directory for Codex apply_patch and Claude Code Edit/Write/MultiEdit, optionally Cursor. Use when the user asks to install/configure/uninstall the p4 edit hook for a directory, e.g. 给某目录装 p4 hook、配置 p4 编辑解锁、安装/卸载 p4 hook。",
+          "path": "skills\\p4-hook-install"
+        }
+      ],
+      "sourcePath": "./plugins/story-lite",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite\\.claude-plugin\\plugin.json"
     }
   ]
 }
