@@ -1,4 +1,0 @@
-interface:
-  display_name: "P4 Hook Install"
-  short_description: "Install/remove project-scoped p4 edit hook"
-  default_prompt: "Use $p4-hook-install to install the p4 edit hook into this project directory."

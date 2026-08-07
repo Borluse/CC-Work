@@ -47,14 +47,14 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 
 ### story-lite (v0.1.11)
 
-轻量需求文档维护。Agent 干活时同步更新需求 / 设计 / Review 文档；设计阶段以设计文档为沟通媒介。需显式点名使用（如 `@story-lite`）。
+轻量需求文档维护。Agent 干活时同步更新需求 / 设计 / Review 文档，设计前检索 library，完成后可沉淀可复用知识。需显式点名使用（如 `@story-lite`）。
 
 **Skills**
 
 | Skill | 说明 |
 |-------|------|
-| `story-lite` | 轻量工作流：设计 ↔ 实现（文档同步）↔ Review ↔ 总结 |
-| `p4-hook-install` | 项目级「编辑前 p4 edit」hook 安装 / 卸载（Codex + Claude Code，可选 Cursor） |
+| `story-lite` | 轻量工作流：设计前检索 → 实现（文档同步）→ Review → 总结 |
+| `story-lite-learn` | 提炼可复用知识，经确认后写入 library |
 
 ---
 
