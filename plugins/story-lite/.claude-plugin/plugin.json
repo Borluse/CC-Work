@@ -1,6 +1,6 @@
 {
   "name": "story-lite",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "轻量需求文档维护插件：agent 干活时同步维护需求/设计/Review 文档，设计阶段以设计文档为沟通媒介",
   "author": {
     "name": "borlusezhao"
