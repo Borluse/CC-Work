@@ -1,6 +1,7 @@
 ---
 name: story-lite
 description: "轻量需求工作流（仅手动调用）：维护 .agent/story 下的需求/设计/总览/review 文档，agent 干活时同步更新文档，设计阶段以设计文档为沟通媒介，Review 输出审查文档，支持基于文档总结工作。仅当用户显式点名本技能（如 @story-lite、plugin://story-lite 或说『用 story-lite』）时才使用；不要根据任务内容自动命中，用户未点名时不要进行任何 .agent 相关操作。"
+disable-model-invocation: true
 ---
 
 # 定位
