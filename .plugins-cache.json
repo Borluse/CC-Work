@@ -2,7 +2,7 @@
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
   "manifestMtime": 1785809588310.1836,
-  "createdAt": 1785921523282,
+  "createdAt": 1786096069576,
   "plugins": [
     {
       "name": "story",
@@ -239,7 +239,7 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
       "_capabilitiesLoaded": true,
-      "version": "0.1.5",
+      "version": "0.1.10",
       "skills": [
         {
           "name": "story-lite",
