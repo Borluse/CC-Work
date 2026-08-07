@@ -33,7 +33,7 @@ disable-model-invocation: true
 
 # 约定
 
-- `<cwd>`：包含 `.agent` 的当前项目根目录；多根工作区或无法唯一确定时先与用户确认
+- `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该路径，禁止全局搜索或扫描其他目录。路径不存在时停止流程并提醒用户创建 `.agent`
 - slug：`YYYY-MM-DD_需求slug`，slug 为 ≤5 词中文短语（如 `html文件浏览器`），创建前与用户确认；目录内所有日期统一 `YYYY-MM-DD`
 - 命名：
   - 设计文档：`需求N_需求标题.md`，编号按需求点清单从 1 开始；单点需求固定 `需求1_需求标题.md`；quick 任务不产设计文档
@@ -102,6 +102,7 @@ C. …
 ## 1. 定位与需求整理
 
 - 点名本技能后的第一动作；定位结论（milestone + 工作目录）先向用户展示，未完成本步不得进入内容讨论或改动任何文件
+- 直接检查 `<cwd>/.agent`；不存在时提醒用户在当前工作目录根部创建 `.agent` 并停止，禁止通过全局搜索、向上查找或递归扫描定位 `.agent`
 - 读取 `<cwd>/.agent/milestones.yaml` 获取当前 milestone；不存在则按「Milestone 配置」创建后重新执行定位
 - 在 `.agent/story/<milestone>/` 下查找同主题正式需求 slug（忽略 `Archive/` 与 `quick/`），并判断任务适合 Quick 还是正式需求；先向用户确认分支，再创建或修改文档
 - **Quick 分支**：输出 `<milestone>` 与 `<quick_dir>`，转 2 Quick；不创建 slug，不写 `原始需求.md`

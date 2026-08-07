@@ -8,7 +8,9 @@ description: "从 story-lite 需求上下文、文档与实际代码中提炼可
 独立知识沉淀 skill，只负责识别、核实、去重并写入 library。
 
 - 由 story-lite 调用时，沿用其 `<cwd>`、milestone 与 slug
-- 用户直接点名时，默认使用当前对话；用户指定 story 时读取对应 `<slug_dir>`
+- `<cwd>` 为当前工作目录，`.agent` 固定为 `<cwd>/.agent`；只直接访问该路径，禁止全局搜索或扫描其他目录
+- `.agent` 不存在时停止并提醒用户在当前工作目录根部创建
+- 用户直接点名时，默认使用当前对话；用户指定 story 时在 `<cwd>/.agent/story/` 下读取对应 `<slug_dir>`
 - 未显式启用 story-lite 且用户未点名本 skill 时，不主动执行
 - 所有确认直接在普通对话中完成，禁止调用 `AskQuestion` 或同类提问工具
 
