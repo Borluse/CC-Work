@@ -10,29 +10,22 @@ disable-model-invocation: true
 
 **使用前提**：本技能只在用户显式点名（@story-lite / plugin://story-lite / 说『用 story-lite』）时启用，不自动命中。点名即激活：第一动作执行「1 定位」并向用户展示定位结论，未完成前不得进入内容讨论或改动任何文件。豁免仅限无任何文件产出、无改动的纯信息问答；凡涉及新增/修改文件的任务一律走工作流——包括对本技能/插件本身的修改（元任务不豁免，续入相关 story）。
 
-# 文档结构（沿用 story 约定）
-
-```
-.agent/
-├── milestones.yaml                  # 当前 milestone（示例与说明见下文）
-├── library/
-│   ├── overall.md                   # 知识索引
-│   └── <主题>.md                    # 按主题维护的知识文档
-└── story/<milestone>/
-    ├── Archive/                     # 若有则忽略，不要碰触
-    ├── quick/                       # quick 模式：简单独立任务
-    │   └── YYYY-MM-DD_任务短语.md   # 需求文档（不 review、不总结）
-    └── <YYYY-MM-DD_slug>/
-        ├── 原始需求.md              # 需求入口
-        ├── 需求N_标题.md            # 每个需求点一个设计文档（多个）
-        ├── 总览.md                  # 需求点清单（多需求点）+ 增量维护（单点需求不建）
-        └── review/                  # 审查文档
-            ├── 需求N_标题_设计review.md
-            └── 需求N_标题_代码review.md
-```
-
 # 约定
 
+```
+.agent/milestones.yaml
+.agent/library/overall.md
+.agent/library/<主题>.md
+.agent/story/<milestone>/Archive/
+.agent/story/<milestone>/quick/YYYY-MM-DD_任务短语.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/review/需求N_标题_设计review.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/review/需求N_标题_代码review.md
+```
+
+- `Archive/`：若存在则忽略，不碰触
 - `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该路径，禁止全局搜索或扫描其他目录。路径不存在时停止流程并提醒用户创建 `.agent`
 - slug：`YYYY-MM-DD_需求slug`，slug 为 ≤5 词中文短语（如 `html文件浏览器`），创建前与用户确认；目录内所有日期统一 `YYYY-MM-DD`
 - 命名：
