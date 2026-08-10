@@ -9,7 +9,7 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 | 插件 | 版本 | 类别 | 说明 |
 |------|------|------|------|
 | [story-plugin](#story-plugin-v443) | 4.4.3 | 工作流 | 需求生命周期：设计 → 实现 → Review → 经验提炼 |
-| [story-lite](#story-lite-v0119) | 0.1.19 | 工作流 | 轻量需求文档同步维护 |
+| [story-lite](#story-lite-v0120) | 0.1.20 | 工作流 | 轻量需求文档同步维护 |
 | [git-plugin](#git-plugin-v114) | 1.1.4 | 开发工具 | Git 提交、README、版本号 |
 | [p4-plugin](#p4-plugin-v113) | 1.1.3 | 开发工具 | P4 pending CL 代码审查 |
 | [obsidian-plugin](#obsidian-plugin-v100) | 1.0.0 | 开发工具 | Obsidian vault 管理与文档生成 |
@@ -45,7 +45,7 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 
 ---
 
-### story-lite (v0.1.19)
+### story-lite (v0.1.20)
 
 轻量需求文档维护。Agent 干活时同步更新需求 / 设计 / Review 文档，设计前检索 library，完成后可沉淀可复用知识。需显式点名使用（如 `@story-lite`）。
 
