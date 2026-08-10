@@ -1,6 +1,6 @@
 {
   "name": "story-plugin",
-  "version": "4.4.3",
+  "version": "4.4.5",
   "description": "\u9700\u6c42\u751f\u547d\u5468\u671f\u7ba1\u7406\u63d2\u4ef6\uff1a\u901a\u8fc7 /story \u8def\u7531\u5165\u53e3\uff0c\u5c06\u9700\u6c42\u4ece\u8bbe\u8ba1\u5230\u5b9e\u73b0\u5230 Review \u7684\u5b8c\u6574\u6d41\u7a0b\u62c6\u5206\u4e3a\u72ec\u7acb\u7684 skill",
   "author": {
     "name": "borlusezhao"
