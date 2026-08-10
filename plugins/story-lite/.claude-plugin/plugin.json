@@ -1,12 +1,12 @@
 {
   "name": "story-lite",
   "version": "0.1.18",
-  "description": "????????????????????Bug?Review??????????",
+  "description": "轻量需求文档维护插件：agent 干活时同步维护需求、设计、Bug 与 Review 文档",
   "author": {
     "name": "borlusezhao"
   },
-  "keywords": ["??", "??", "bug", "review", "workflow", "story"],
-  "category": "????",
+  "keywords": ["需求", "文档", "bug", "review", "workflow", "story"],
+  "category": "开发工具",
   "skills": [
     "./skills/story-lite",
     "./skills/story-lite-learn"
