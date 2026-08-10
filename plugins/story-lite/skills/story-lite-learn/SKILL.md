@@ -1,6 +1,6 @@
 ---
 name: story-lite-learn
-description: "从 story-lite 需求上下文、文档与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。"
+description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成、Bug 验证关闭或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。"
 ---
 
 # 定位
@@ -19,6 +19,7 @@ description: "从 story-lite 需求上下文、文档与核实源中提炼可跨
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
+.agent/story/<milestone>/<YYYY-MM-DD_slug>/bug/BugN_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/review/需求N_标题_设计review.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/review/需求N_标题_代码review.md
 ```
@@ -27,7 +28,7 @@ description: "从 story-lite 需求上下文、文档与核实源中提炼可跨
 - `Archive/`：若存在则忽略，不碰触；解析 story 时忽略各 milestone 下全部 `quick/`
 - **代码核实**：允许在当前工程内按入口函数/类名/文件路径线索用 `rg`/`fd` 检索；不因此放开对其它目录 `.agent` 的扫描
 - **触发**：
-  - story-lite 委托（正式需求完成触发、发现可复用知识、用户路由「沉淀 / 提炼方法论 / 写入 library」）时执行
+  - story-lite 委托（正式需求完成、Bug 验证关闭且存在可复用知识、或用户路由「沉淀 / 提炼方法论 / 写入 library」）时执行
   - 用户显式点名本 skill，或说「提炼方法论 / 沉淀经验 / 写入 library」时执行
   - 未启用 story-lite 且用户未点名（含同义触发）时，不主动执行
 - **输入默认**：
@@ -50,7 +51,7 @@ description: "从 story-lite 需求上下文、文档与核实源中提炼可跨
 ## 1. 收集与核实
 
 1. 读取当前对话上下文。
-2. 有 `<slug_dir>` 时读取原始需求、设计文档、总览和 review 报告。
+2. 有 `<slug_dir>` 时读取原始需求、设计文档、总览、Bug 报告和 review 报告。
 3. 沿候选知识线索核实：业务查代码；Skill/约定查对应文档。
 
 ## 2. 对比 library
