@@ -2,7 +2,7 @@
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
   "manifestMtime": 1785809588310.1836,
-  "createdAt": 1786104311801,
+  "createdAt": 1786334378993,
   "plugins": [
     {
       "name": "story",
@@ -239,7 +239,7 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
       "_capabilitiesLoaded": true,
-      "version": "0.1.11",
+      "version": "0.1.17",
       "skills": [
         {
           "name": "story-lite",
@@ -247,9 +247,9 @@
           "path": "skills\\story-lite"
         },
         {
-          "name": "p4-hook-install",
-          "description": "Install or remove a project-scoped p4 edit hook (runs p4 edit before editing to unlock read-only Perforce files) into a target project directory for Codex apply_patch and Claude Code Edit/Write/MultiEdit, optionally Cursor. Use when the user asks to install/configure/uninstall the p4 edit hook for a directory, e.g. 给某目录装 p4 hook、配置 p4 编辑解锁、安装/卸载 p4 hook。",
-          "path": "skills\\p4-hook-install"
+          "name": "story-lite-learn",
+          "description": "从 story-lite 需求上下文、文档与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。",
+          "path": "skills\\story-lite-learn"
         }
       ],
       "sourcePath": "./plugins/story-lite",
