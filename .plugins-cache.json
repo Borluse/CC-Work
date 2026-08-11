@@ -2,7 +2,7 @@
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
   "manifestMtime": 1785809588310.1836,
-  "createdAt": 1786334378993,
+  "createdAt": 1786413955460,
   "plugins": [
     {
       "name": "story",
@@ -28,7 +28,7 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-plugin",
       "_capabilitiesLoaded": true,
-      "version": "4.4.3",
+      "version": "4.4.5",
       "skills": [
         {
           "name": "story",
@@ -64,6 +64,11 @@
           "name": "story-implement",
           "description": "根据设计文档实现代码。TRIGGER WHEN 当用户已完成需求设计文档、开始编码实现时使用，或需要修改代码时使用。",
           "path": "skills\\story-implement"
+        },
+        {
+          "name": "story-bug",
+          "description": "录入、分析、修复并验证 Bug。TRIGGER WHEN: 用户报告缺陷、崩溃、功能不生效、行为异常，或需要将 Review 问题转为 Bug 时使用。",
+          "path": "skills\\story-bug"
         },
         {
           "name": "story-review",
@@ -219,7 +224,7 @@
     {
       "name": "story-lite",
       "source": "./plugins/story-lite",
-      "description": "轻量需求文档维护插件：agent 干活时同步维护需求/设计/Review 文档，设计阶段以设计文档为沟通媒介",
+      "description": "轻量需求文档维护插件：agent 干活时同步维护需求、设计、Bug 与 Review 文档",
       "author": {
         "name": "borlusezhao"
       },
@@ -227,6 +232,7 @@
       "keywords": [
         "需求",
         "文档",
+        "bug",
         "review",
         "workflow",
         "story"
@@ -239,17 +245,22 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
       "_capabilitiesLoaded": true,
-      "version": "0.1.17",
+      "version": "0.1.22",
       "skills": [
         {
           "name": "story-lite",
-          "description": "轻量需求工作流（仅手动调用）：维护 .agent/story 下的需求/设计/总览/review 文档，agent 干活时同步更新文档，设计阶段以设计文档为沟通媒介，Review 输出审查文档，支持基于文档总结工作。仅当用户显式点名本技能（如 @story-lite、plugin://story-lite 或说『用 story-lite』）时才使用；不要根据任务内容自动命中，用户未点名时不要进行任何 .agent 相关操作。",
+          "description": "轻量需求工作流核心：维护 .agent/story 下的需求/设计/总览/bug/review 文档，支持设计、实现、Bug、Review、总结与知识沉淀。仅当用户显式点名 story-lite，或显式调用 story 并由其委托时使用；不要根据普通任务内容自动命中。",
           "path": "skills\\story-lite"
         },
         {
           "name": "story-lite-learn",
-          "description": "从 story-lite 需求上下文、文档与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。",
+          "description": "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成、Bug 验证关闭或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。",
           "path": "skills\\story-lite-learn"
+        },
+        {
+          "name": "story-lite-wiki",
+          "description": "从 story-lite 需求/设计/总览文档生成面向团队的精简 Wiki。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'，或显式点名 story-lite-wiki 时使用。",
+          "path": "skills\\story-lite-wiki"
         }
       ],
       "sourcePath": "./plugins/story-lite",
