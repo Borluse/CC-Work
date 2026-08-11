@@ -1,6 +1,6 @@
 ---
 name: story-lite-learn
-description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成、Bug 验证关闭或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。"
+description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且任一正式需求点首次完成、Bug 已验证且存在可复用知识或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。"
 ---
 
 # 定位
@@ -15,7 +15,6 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 .agent/library/overall.md
 .agent/library/<主题>.md
 .agent/story/<milestone>/Archive/
-.agent/story/<milestone>/quick/YYYY-MM-DD_任务短语.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
@@ -26,10 +25,7 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 
 - `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该树，禁止扫描其他目录的 `.agent`。路径不存在时停止并提醒在当前工作目录根部创建
 - `Archive/`：若存在则忽略，不碰触；解析 story 时忽略各 milestone 下全部 `quick/`
-- **触发**：
-  - story-lite 委托（正式需求完成、Bug 验证关闭且存在可复用知识、或用户路由「沉淀 / 提炼方法论 / 写入 library」）时执行
-  - 用户显式点名本 skill，或说「提炼方法论 / 沉淀经验 / 写入 library」时执行
-  - 未启用 story-lite 且用户未点名（含同义触发）时，不主动执行
+- **触发**：由 `story-lite` 委托，或本 skill description 命中；其他场景不主动执行
 - **输入默认**：
   - 由 story-lite 委托且已有上下文时，沿用其 `<slug_dir>`
   - 用户点名且未指定 story 时，默认仅用当前对话

@@ -9,12 +9,11 @@ description: "从 story-lite 需求/设计/总览文档生成面向团队的精�
 
 # 约定
 
-路径与访问边界与 `story-lite` 约定对齐；冲突以主技能为准。下列为本 skill 自用子集。
+路径与访问边界与 `story-lite` 对齐。Wiki 输出为独立 skill 的显式例外：可跨 milestone 读取，并仅向用户确认的目标 `<slug_dir>/wiki/` 写入，不修改需求状态文档。下列为本 skill 自用子集。
 
 ```
 .agent/milestones.yaml
 .agent/story/<milestone>/Archive/
-.agent/story/<milestone>/quick/YYYY-MM-DD_任务短语.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
@@ -35,8 +34,7 @@ description: "从 story-lite 需求/设计/总览文档生成面向团队的精�
 ## Phase 0 门禁
 
 1. 检查 `<cwd>/.agent` 与 `milestones.yaml`；缺失则提醒创建/配置并停止。
-2. 读取 `current` milestone；向用户展示工作目录与 milestone。
-3. 定位目标 `<slug_dir>`（见约定「输入默认」）。
+2. 按「输入默认」定位目标 `<slug_dir>`，展示工作目录、目标 milestone 与 slug。
 
 ## Phase 1 定位源文档
 
