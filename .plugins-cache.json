@@ -245,7 +245,7 @@
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
       "_capabilitiesLoaded": true,
-      "version": "0.1.26",
+      "version": "0.1.27",
       "skills": [
         {
           "name": "story-lite",
@@ -254,7 +254,7 @@
         },
         {
           "name": "story-lite-learn",
-          "description": "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且正式需求完成、Bug 验证关闭或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。",
+          "description": "从 story-lite 需求上下文、Bug 报告与核实源中提炼可跨需求复用的知识，经预览确认后写入 .agent/library。在本会话已显式启用 story-lite 且任一正式需求点首次完成、Bug 已验证且存在可复用知识或发现值得沉淀的知识时由主技能委托；用户显式点名 story-lite-learn，或说提炼方法论、沉淀经验、写入 library 时也使用。",
           "path": "skills\\story-lite-learn"
         },
         {
