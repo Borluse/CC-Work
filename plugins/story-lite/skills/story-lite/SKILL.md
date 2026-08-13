@@ -41,7 +41,19 @@ description: "轻量需求工作流核心：维护 .agent/story 下的需求/设
 - Bug 状态枚举（只写对应 Bug 报告）：待确认 / 已确认 / 修复中 / 已修复 / 已验证。
 - 状态承载：多点写 `总览.md`。单点写对应设计文档。Quick 写「结果/状态」。Bug 只写对应 Bug 报告。状态变更写上述承载处。
 - 检索 story 时忽略 `Archive/` 与各 milestone 下 `quick/`。
-- 模板文件与本文件同级。写入前只读取当前模式指定的模板文件。
+
+## 模板门禁
+
+每次创建或更新目标前读取对应模板。模板文件与本文件同级。
+
+| 目标 | 模板 |
+|------|------|
+| `原始需求.md` | [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md)“原始需求” |
+| `总览.md` | [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md)“总览” |
+| `需求N_标题.md` | [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md)“需求点” |
+| Quick 文档 | [QUICK-TEMPLATE.md](QUICK-TEMPLATE.md) |
+| Bug 报告 | [BUG-TEMPLATE.md](BUG-TEMPLATE.md) |
+| Review 报告（新建、更新、Quick 对话输出） | [REVIEW-TEMPLATE.md](REVIEW-TEMPLATE.md) |
 
 ## Milestone（`.agent/milestones.yaml`）
 
@@ -127,8 +139,6 @@ C. …
    - 若命中知识沉淀：转 §8。
 6. 若新正式需求已确认：创建或追加 `原始需求.md`，随后进入 §4 Design。
 
-写入 `原始需求.md` 前读取 [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md) 的“原始需求”。
-
 ## 2. Quick 模式（简单独立任务）
 
 入口：路由时与用户确认。不建原始需求 / 设计文档。不纳入整合/总结。
@@ -141,8 +151,6 @@ C. …
 6. 多轮只同步必要设计偏差。
 7. 若用户要求整合/总结：询问是否转正式需求。确认后重新执行定位。
 8. 若用户要求 Review：转 §6。
-
-写入 Quick 文档前读取 [QUICK-TEMPLATE.md](QUICK-TEMPLATE.md)。
 
 ## 3. Bug 模式
 
@@ -167,8 +175,6 @@ C. …
    3. 输出 Bug 报告、关联文档、修改文件和验证结果。
    4. 若可跨需求复用：按状态规则转 §8。若无可沉淀：只说明。
 
-写入 Bug 报告前读取 [BUG-TEMPLATE.md](BUG-TEMPLATE.md)。
-
 ## 4. Design（文档即沟通媒介，含需求拆分）
 
 入口：定位后的新正式需求，或路由命中 Design / 拆分 / TDD / 大需求规划。
@@ -188,16 +194,12 @@ C. …
    4. 若用户确认：直接创建或更新 `总览.md`。新增需求点按状态规则写 `待设计`。设计文档与 Review 链接写 `-`。其余需求点保持原状态。
    5. 若单点扩为多点：将已有设计文档的状态、从已确认设计中提取的关键决策、设计文档与 Review 链接迁入总览，并删除设计文档中的状态与 Review 行。随后仅新增或受影响需求点进入详细设计。不生成独立 TDD 文档。
 
-创建或更新总览前读取 [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md) 的“总览”。
-
 4. 目标需求点详细设计
    - 若单点需求：直接进入。
    - 若已有多点需求且已确认目标：可直接进入。
    - 若刚完成整体规划：仅新增或受影响需求点进入。
    - 每个目标需求点按提问规范独立确认。确认前不写设计文档。若单点：不写总览。
 5. 落盘设计：写入目标 `需求N_标题.md`。按状态规则写 `设计中`。若单点：写本设计文档的状态与关键决策，不写 `待设计`、不建总览。若多点：写总览该点，并同步关键决策与设计文档链接。
-
-写入需求点文档前读取 [FORMAL-TEMPLATES.md](FORMAL-TEMPLATES.md) 的“需求点”。
 
 6. 文档确认循环：展示 → 反馈改文档 → 再展示，直至确认。若用户确认：按状态规则写 `已确认`。若设计 review 需改方案：回到本步。
 7. 进入实现。若设计尚未确认：禁止改代码。跳过详细设计的小改见 §5 门禁。
@@ -234,8 +236,6 @@ C. …
    - 每次复查均开子任务并更新原报告或对话报告，直至清零或用户确认结束。
    - 正式需求转 Bug：携带 Review 结论，并确认关联与修复方案。
 5. 收尾。正式设计 review：按状态规则写 `已确认` 并更新报告链接。正式代码 review：按状态规则写 `已Review` 并更新报告链接。Quick：只输出最终报告。两者均保留未修问题与全部修复记录。
-
-生成 Review 报告前读取 [REVIEW-TEMPLATE.md](REVIEW-TEMPLATE.md)。
 
 ## 7. 整合与总结
 
