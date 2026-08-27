@@ -13,7 +13,6 @@ description: "从 story-lite 需求/设计/总览文档生成面向团队的精�
 
 ```
 .agent/milestones.yaml
-.agent/story/<milestone>/Archive/
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
@@ -21,10 +20,10 @@ description: "从 story-lite 需求/设计/总览文档生成面向团队的精�
 ```
 
 - `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该树，禁止扫描其他目录的 `.agent`。路径不存在时停止并提醒在当前工作目录根部创建
-- `Archive/`：若存在则忽略，不碰触；解析 story 时忽略各 milestone 下全部 `quick/`
+- 解析 story 时忽略各 milestone 下全部 `quick/`
 - **触发**：用户显式点名本 skill，或说「生成wiki / 总结为wiki / 写wiki文档 / 导出wiki」时执行
 - **输入默认**：
-  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下跨 milestone 解析对应 `<slug_dir>`（`Archive/`、`quick/` 见上）
+  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下跨 milestone 解析对应 `<slug_dir>`（`quick/` 见上）
   - 未指定时优先沿用当前对话已确认的 `<slug_dir>`；仍不明则询问
 - **确认**：全部在普通对话中完成，禁止调用 `AskQuestion` 或同类提问工具
 - **读者与文风**：项目组成员（策划、程序、QA）；语言简洁、无冗余、禁止哲学说明、实事求是

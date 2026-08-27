@@ -14,7 +14,6 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 ```
 .agent/library/overall.md
 .agent/library/<主题>.md
-.agent/story/<milestone>/Archive/
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
@@ -24,12 +23,12 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 ```
 
 - `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该树，禁止扫描其他目录的 `.agent`。路径不存在时停止并提醒在当前工作目录根部创建
-- `Archive/`：若存在则忽略，不碰触；解析 story 时忽略各 milestone 下全部 `quick/`
+- 解析 story 时忽略各 milestone 下全部 `quick/`
 - **触发**：由 `story-lite` 委托，或本 skill description 命中；其他场景不主动执行
 - **输入默认**：
   - 由 story-lite 委托且已有上下文时，沿用其 `<slug_dir>`
   - 用户点名且未指定 story 时，默认仅用当前对话
-  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下跨 milestone 解析对应 `<slug_dir>`（`Archive/`、`quick/` 见上）
+  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下跨 milestone 解析对应 `<slug_dir>`（`quick/` 见上）
 - **确认**：全部在普通对话中完成，禁止调用 `AskQuestion` 或同类提问工具
 
 # 提炼规则

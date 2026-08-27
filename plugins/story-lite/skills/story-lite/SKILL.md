@@ -19,7 +19,6 @@ description: "轻量需求工作流核心：维护 .agent/story 下的需求/设
 .agent/milestones.yaml
 .agent/library/overall.md
 .agent/library/<主题>.md
-.agent/story/<milestone>/Archive/
 .agent/story/<milestone>/quick/YYYY-MM-DD_任务短语.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
 .agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
@@ -32,7 +31,6 @@ description: "轻量需求工作流核心：维护 .agent/story 下的需求/设
 - `<cwd>`：当前工作目录。`.agent` 固定为 `<cwd>/.agent`。只直接访问该树。禁止扫描其他目录的 `.agent`。
 - `<slug_dir>`：`.agent/story/<milestone>/<YYYY-MM-DD_slug>/`。
 - `<quick_doc>`：`.agent/story/<milestone>/quick/YYYY-MM-DD_任务短语.md`。
-- 若 `Archive/` 存在：忽略，不碰触。
 - slug：`YYYY-MM-DD_需求slug`，≤5 词中文短语，创建前确认。目录内日期统一 `YYYY-MM-DD`。
 - 命名：文件名见路径列表。设计文档与 Bug 各自从 1 自增。单点固定 `需求1_标题.md`。quick 不产设计文档。
 - 变更记录：`- <YYYY-MM-DD HH:mm>：…`。原始需求记追加。设计记变更。总览记聚合与状态。quick/review 不记。
@@ -40,7 +38,7 @@ description: "轻量需求工作流核心：维护 .agent/story 下的需求/设
 - 正式状态枚举：待设计 / 设计中 / 已确认 / 实现中 / Review 中 / 已完成 / 已Review / 阻塞。
 - Bug 状态枚举（只写对应 Bug 报告）：待确认 / 已确认 / 修复中 / 已修复 / 已验证。
 - 状态承载：存在 `总览.md` 时写总览。既有无总览单点写对应设计文档。Quick 写「结果/状态」。Bug 只写对应 Bug 报告。状态变更写上述承载处。
-- 检索 story 时忽略 `Archive/` 与各 milestone 下 `quick/`。
+- 检索 story 时忽略各 milestone 下 `quick/`。
 
 ## 模板门禁
 
@@ -93,7 +91,7 @@ C. …
 
 # 工作流程
 
-各模式步骤只写本模式动作。写状态：「按状态规则：`<状态>`」。路径、访问、Archive、命名、状态承载、文档先行按约定。
+各模式步骤只写本模式动作。写状态：「按状态规则：`<状态>`」。路径、访问、命名、状态承载、文档先行按约定。
 
 ## 状态规则
 
