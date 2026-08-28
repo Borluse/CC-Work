@@ -1,6 +1,6 @@
 {
   "name": "story-lite",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "轻量需求文档维护插件：同步维护需求、设计、Bug 与 Review 文档，并支持将需求转换为 HTML 工具",
   "author": {
     "name": "borlusezhao"
