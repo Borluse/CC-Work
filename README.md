@@ -9,7 +9,7 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 | 插件 | 版本 | 类别 | 说明 |
 |------|------|------|------|
 | [story-plugin](#story-plugin-v443) | 4.4.3 | 工作流 | 需求生命周期：设计 → 实现 → Review → 经验提炼 |
-| [story-lite](#story-lite-v023) | 0.2.3 | 工作流 | 轻量需求文档同步维护与 HTML 工具生成 |
+| [story-lite](#story-lite-v024) | 0.2.4 | 工作流 | 轻量需求文档同步维护与 HTML 工具生成 |
 | [git-plugin](#git-plugin-v114) | 1.1.4 | 开发工具 | Git 提交、README、版本号 |
 | [p4-plugin](#p4-plugin-v113) | 1.1.3 | 开发工具 | P4 pending CL 代码审查 |
 | [obsidian-plugin](#obsidian-plugin-v100) | 1.0.0 | 开发工具 | Obsidian vault 管理与文档生成 |
@@ -45,7 +45,7 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 
 ---
 
-### story-lite (v0.2.3)
+### story-lite (v0.2.4)
 
 轻量需求文档维护。Agent 干活时同步更新需求 / 设计 / Review 文档，设计前检索 library，完成后可沉淀可复用知识；附带需求转单文件 HTML 工具能力。需显式点名使用（如 `@story-lite`）。
 
@@ -55,7 +55,7 @@ Claude Code 插件市场仓库，收录面向游戏开发与工作流的插件�
 |-------|------|
 | `story-lite` | 轻量工作流：总览规划 → 逐点设计 → 实现（文档同步）→ Review → 总结 |
 | `story-lite-learn` | 提炼可复用方法论指引（厚度受限），经确认后写入 library |
-| `story-lite-wiki` | 从需求/设计/总览生成面向团队的精简 Wiki |
+| `story-lite-wiki` | 从需求文档生成或迭代团队 Wiki（export 导出 / tdd 按需求点讨论方案） |
 | `story-show` | 将需求转换为静态说明页或可修改参数的交互式 HTML 测试工具 |
 
 ---
