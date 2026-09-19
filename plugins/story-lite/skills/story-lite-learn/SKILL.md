@@ -16,6 +16,7 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 .agent/library/<主题>.md
 .agent/story/<slug>/原始需求.md
 .agent/story/<slug>/总览.md
+.agent/story/<slug>/index.yaml
 .agent/story/<slug>/<milestone>/需求N_标题.md
 .agent/story/<slug>/<milestone>/bug/BugN_标题.md
 .agent/story/<slug>/<milestone>/review/需求N_标题_设计review.md
@@ -45,7 +46,7 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 ## 1. 收集与核实
 
 1. 读取当前对话上下文。
-2. 有 `<slug_dir>` 时读取主题根的原始需求、总览，以及全部 milestone 工作目录中的设计文档、Bug 报告和 review 报告。
+2. 有 `<slug_dir>` 时读取主题根的原始需求、总览、`index.yaml`，以及全部 milestone 工作目录中的设计文档、Bug 报告和 review 报告。判断需求或 Bug 状态时以 yaml 对应条目为准；无该条目时回退总览、设计文档或 Bug 报告。
 3. 沿候选知识线索核实：业务查代码；Skill/约定查对应文档。
 
 ## 2. 对比 library

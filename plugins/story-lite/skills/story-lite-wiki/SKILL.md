@@ -11,12 +11,13 @@ description: "从 story-lite 需求文档生成或迭代团队 Wiki。模式：e
 
 # 约定
 
-路径与访问边界与 `story-lite` 对齐。默认可跨 milestone 读取；默认只向用户确认的目标 Wiki 写入，不改需求状态文档（`原始需求.md` / `总览.md` / `需求N_*.md` 的状态行）。用户明确要求同步某份需求文档时除外。
+路径与访问边界与 `story-lite` 对齐。默认可跨 milestone 读取；默认只向用户确认的目标 Wiki 写入，不改 `index.yaml` 中的需求、Bug 或 Quick 状态。用户明确要求同步状态时除外。
 
 ```
 .agent/milestones.yaml
 .agent/story/<slug>/原始需求.md
 .agent/story/<slug>/总览.md
+.agent/story/<slug>/index.yaml
 .agent/story/<slug>/<milestone>/需求N_标题.md
 .agent/story/<slug>/wiki/<标题>.md
 .agent/story/<slug>/<标题>TDD.md
