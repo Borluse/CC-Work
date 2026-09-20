@@ -11,19 +11,20 @@ description: "从 story-lite 需求文档生成或迭代团队 Wiki。模式：e
 
 # 约定
 
-路径与访问边界与 `story-lite` 对齐。默认可跨 milestone 读取；默认只向用户确认的目标 Wiki 写入，不改需求状态文档（`原始需求.md` / `总览.md` / `需求N_*.md` 的状态行）。用户明确要求同步某份需求文档时除外。
+路径与访问边界与 `story-lite` 对齐。默认可跨 milestone 读取；默认只向用户确认的目标 Wiki 写入，不改 `index.yaml` 中的需求、Bug 或 Quick 状态。用户明确要求同步状态时除外。
 
 ```
 .agent/milestones.yaml
-.agent/story/<milestone>/<YYYY-MM-DD_slug>/原始需求.md
-.agent/story/<milestone>/<YYYY-MM-DD_slug>/需求N_标题.md
-.agent/story/<milestone>/<YYYY-MM-DD_slug>/总览.md
-.agent/story/<milestone>/<YYYY-MM-DD_slug>/wiki/<标题>.md
-.agent/story/<milestone>/<YYYY-MM-DD_slug>/<标题>TDD.md
+.agent/story/<slug>/原始需求.md
+.agent/story/<slug>/总览.md
+.agent/story/<slug>/index.yaml
+.agent/story/<slug>/<milestone>/需求N_标题.md
+.agent/story/<slug>/wiki/<标题>.md
+.agent/story/<slug>/<标题>TDD.md
 ```
 
 - `<cwd>`：当前工作目录；`.agent` 固定为 `<cwd>/.agent`，只直接访问该树
-- 解析 story 时忽略各 milestone 下全部 `quick/`
+- 解析 story 时忽略 `.agent/story/quick/`
 - 未指定 story 时沿用当前对话已确认的 `<slug_dir>`；仍不明则询问
 - 确认全部在普通对话中完成，禁止调用 `AskQuestion`
 - 文风：简洁、无冗余、禁止哲学说明、实事求是；只写已确认或源文档已有的内容
@@ -44,6 +45,6 @@ description: "从 story-lite 需求文档生成或迭代团队 Wiki。模式：e
 # Phase 0 门禁
 
 1. 检查 `<cwd>/.agent` 与 `milestones.yaml`；缺失则提醒并停止
-2. 定位 `<slug_dir>`，展示工作目录、milestone、slug
+2. 定位 `<slug_dir>`，展示工作目录、当前 milestone、slug 与主题根路径
 3. 宣布当前模式与将读取的 reference
 4. 进入对应模式流程
