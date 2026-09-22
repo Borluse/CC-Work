@@ -31,7 +31,7 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 - **输入默认**：
   - 由 `story-lite` 委托且已有上下文时，沿用其 `<slug_dir>`。
   - 用户点名且未指定 story 时，默认仅使用当前对话。
-  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下解析对应 `<slug_dir>`，读取主题根文档及全部 milestone 工作目录（`quick/` 见上）。
+  - 用户指定 story 时，在 `<cwd>/.agent/story/` 下解析对应 `<slug_dir>`，先读取主题根原始需求和 `index.yaml`，按主技能「总览读取策略」读取与候选知识相关的总览章节，再读取全部 milestone 工作目录中的设计文档、Bug 报告和 Review 报告（`quick/` 见上）。
 - **确认**：全部在普通对话中完成，禁止调用 `AskQuestion` 或同类提问工具。
 
 # 提炼规则
@@ -48,7 +48,7 @@ description: "从 story-lite 需求上下文、Bug 报告与核实源中提炼�
 ## 1. 收集与核实
 
 1. 读取当前对话上下文。
-2. 若有 `<slug_dir>`：读取主题根的原始需求、总览、`index.yaml`，以及全部 milestone 工作目录中的设计文档、Bug 报告和 Review 报告。判断需求或 Bug 状态时以 yaml 对应条目为准；无该条目时回退总览「需求点 N」节、设计文档首部或 Bug 报告首部。
+2. 若有 `<slug_dir>`：读取主题根的原始需求和 `index.yaml`，按主技能「总览读取策略」读取与候选知识相关的总览章节，再读取全部 milestone 工作目录中的设计文档、Bug 报告和 Review 报告。判断需求或 Bug 状态时以 yaml 对应条目为准；无该条目时回退总览「需求点 N」节、设计文档首部或 Bug 报告首部。只有用户明确要求完整盘点或证据存在冲突时，才整读总览。
 3. 沿候选知识线索核实：业务查代码；Skill/约定查对应文档。
 
 ## 2. 对比 library
