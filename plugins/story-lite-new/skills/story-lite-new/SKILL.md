@@ -15,126 +15,17 @@ disable-model-invocation: true
 
 这些信息的优先级取决于它们与当前问题的关联和可信度。新的用户反馈、实际代码事实和验证结果可以修正此前的假设。
 
-## `.agent` 文档承载
+## 工作约定
 
-工作文档使用现有 `story-lite` 的结构，不创建新的目录层级或替代账本：
+处理 `.agent` 文档、文件路径或 YAML 账本时，遵循同目录的 `convention.md`。它是以下稳定约定的单一来源：
 
-```text
-.agent/
-├── milestones.yaml
-├── library/
-│   ├── overall.md
-│   └── <主题>.md
-└── story/
-    ├── quick/
-    │   └── <milestone>/
-    │       ├── 任务短语.md
-    │       └── index.yaml
-    └── <slug>/
-        ├── 原始需求.md
-        ├── 总览.md
-        ├── index.yaml
-        └── <milestone>/
-            ├── 需求N_标题.md
-            ├── bug/
-            │   └── BugN_标题.md
-            └── review/
-                ├── 需求N_标题_设计review.md
-                └── 需求N_标题_代码review.md
-```
+- `.agent` 目录结构
+- 文件命名和路径关系
+- `milestones.yaml`、正式主题 `index.yaml`、Quick `index.yaml` 的 schema
+- 字段类型、状态枚举、编号规则和空集合规则
+- 文档与代码的一致性约定
 
-- `<slug>` 是正式主题的短名称，不带日期前缀；`quick` 是保留名称。
-- 主题根的 `原始需求.md` 保存用户意图，`总览.md` 保存跨需求的当前摘要，`index.yaml` 保存正式需求的编号、状态、里程碑、文档路径和 Review 关系。
-- 需求点、Bug 和 Review 文档位于对应 milestone 目录；Quick 使用 Quick 目录下自己的 `index.yaml`。
-- `library/` 保存可以跨需求复用的方法论，不替代具体需求文档。
-- 文档是持续的工作记忆：当关键理解、方案或实际行为发生变化时，应让相关记录与事实保持一致；代码和实际证据是行为判断的最终依据。
-
-## YAML 数据契约
-
-`.agent` 下只使用三类工作流 YAML。每类 YAML 的字段集合、字段类型、状态枚举、路径规则和空集合规则固定，未定义字段不作为扩展机制。
-
-### `milestones.yaml`
-
-位置：`.agent/milestones.yaml`
-
-```yaml
-current: 切片1
-milestones:
-  切片1:
-    created: 2026-08-05
-```
-
-- `current`：必填字符串，值必须存在于 `milestones` 的 key 中。
-- `milestones`：必填映射；每个 milestone 条目只允许 `created`。
-- `created`：必填日期字符串，格式为 `YYYY-MM-DD`。
-
-### 正式主题 `index.yaml`
-
-位置：`.agent/story/<slug>/index.yaml`
-
-```yaml
-requirement: 1
-bug: 0
-items:
-  - id: 1
-    title: 入口 skill 概念化核心工作流
-    milestone: 切片1
-    status: 已完成
-    keywords:
-      - 自主路由
-      - 概念职责
-    file: 切片1/需求1_入口skill概念化核心工作流.md
-    design_review: 切片1/review/需求1_入口skill概念化核心工作流_设计review.md
-    code_review: 切片1/review/需求1_入口skill概念化核心工作流_代码review.md
-    continues: [2]
-    continued_by: [3]
-    prior_status:
-      - 已确认
-bugs:
-  - id: 1
-    title: 入口未被正确加载
-    req: 1
-    milestone: 切片1
-    status: 已验证
-    file: 切片1/bug/Bug1_入口未被正确加载.md
-```
-
-正式需求条目固定使用：
-
-- 必填：`id`（整数）、`title`（字符串）、`milestone`（字符串）、`status`（正式状态）。
-- 可选：`keywords`（字符串数组）、`file`、`design_review`、`code_review`、`continues`（整数数组）、`continued_by`（整数数组）、`prior_status`（正式状态数组）。
-
-Bug 条目固定使用：
-
-- 必填：`id`（整数）、`title`（字符串）、`req`（需求编号或空字符串）、`milestone`（字符串）、`status`（Bug 状态）。
-- 可选：`file`、`prior_status`（Bug 状态数组）。
-
-正式状态枚举：`待设计`、`设计中`、`已确认`、`实现中`、`Review 中`、`已完成`、`已Review`、`阻塞`。
-
-Bug 状态枚举：`待确认`、`已确认`、`修复中`、`已修复`、`已验证`。
-
-其他规则：
-
-- `requirement` 和 `bug` 是已分配的最大编号，必填整数且不小于 0。
-- `items` 或 `bugs` 有条目时写数组；为空时省略对应顶层字段，省略规则固定。
-- `keywords` 仅用于正式需求，Quick 和 Bug 不写；正式需求设计完成后填写 3–8 个短词或短语。
-- 空的可选字段不写入，不写 `null`、空数组或无关联的空字符串；Bug 的 `req` 无关联时使用规定的空字符串。
-- 不通过扫描目录取号；路径均使用相对主题根的正斜杠路径。
-
-### Quick `index.yaml`
-
-位置：`.agent/story/quick/<milestone>/index.yaml`
-
-```yaml
-items:
-  - title: 修复日志输出
-    status: 已完成
-```
-
-- `items`：必填数组。
-- 每个条目只允许 `title`（字符串）和 `status`（Quick 状态）。
-- Quick 状态枚举：`待确认`、`已确认`、`已完成`。
-- Quick 不使用 `requirement`、`bug`、`id`、`keywords`、`design_review` 或 `code_review`。
+工作逻辑不由 `convention.md` 编排；设计、实现和 Review 仍根据当前意图、上下文和证据自行判断。
 
 ## 核心工作模型
 
@@ -206,6 +97,8 @@ AI 可以解释自己当前采用的视角、依据和预期产出，也可以�
 ## 协作原则
 
 - 优先让重要的意图、取舍和行为变化可追踪，而不是只留下代码结果。
+- 在实施会改变代码或其他实际产物的修改前，先与用户确定设计方案；未形成设计共识时，不得直接实施修改。
+- 实施中发现方案不足、事实冲突或关键分歧时，先暂停相关修改并回到设计讨论，形成新的共识后再继续。
 - 对普通实现细节可以运用已有上下文和工程判断；会改变目标、验收、接口、数据结构或主要实现方向的假设，应让用户看见并参与决定。
 - 设计记录、代码行为和验证结论应互相指向；发现不一致时，把不一致本身作为当前问题处理。
 - 保持范围意识：当前工作聚焦用户真正要解决的问题，不因为发现旁支问题就无边界扩张。
