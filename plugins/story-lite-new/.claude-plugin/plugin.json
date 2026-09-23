@@ -1,0 +1,13 @@
+{
+  "name": "story-lite-new",
+  "version": "0.1.0",
+  "description": "Story-lite-new 插件（待定义）",
+  "author": {
+    "name": "borlusezhao"
+  },
+  "keywords": ["需求", "文档", "review", "workflow", "story"],
+  "category": "开发工具",
+  "skills": [
+    "./skills/story-lite-new"
+  ]
+}
