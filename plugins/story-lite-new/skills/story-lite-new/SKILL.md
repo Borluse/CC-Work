@@ -48,6 +48,10 @@ description: "围绕 .agent 文档开展设计、实现和 Review；仅当用户
 
 纯阅读、解释和只读排查可以直接处理；一旦任务需要修改文件，就必须回到上述文档先行流程，除非用户明确要求跳过文档。
 
+## Perforce 变更集
+
+当前工作区使用 Perforce 时，每个新需求必须创建一个对应的 pending changelist，名称使用简短、准确的中文描述，直接概括当前需求。开始修改前，检查目标文件所属 changelist；不在当前需求 changelist 的文件先移动到该 changelist，包括 `default` 或其他 pending changelist 中的文件。需求相关文件统一归入对应 changelist。
+
 ## 文档图示
 
 书写或修改 `.agent` 中的说明性 Markdown 文档时，仅对涉及 UML 结构、关系、时序、状态、流程或交互的内容要求提供 Mermaid 图示；其他内容可使用文字、列表或 ASCII 文本表达。仅包含索引或账本字段的 YAML 文件不适用此要求。
