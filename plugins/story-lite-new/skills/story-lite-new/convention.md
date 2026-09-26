@@ -1,7 +1,5 @@
 # 工作约定
 
-本文档定义 Story 工作区中稳定的文档、路径和 YAML 账本约定。处理 `.agent` 文档、文件路径或 YAML 账本时，以本文档为准。
-
 ## `.agent` 目录结构
 
 ```text
@@ -31,20 +29,7 @@
 - `.agent` 固定在当前工作目录根部，只使用当前工作区的 `.agent`。
 - `<slug>` 是正式主题的短名称，最多 5 个中文词，不带日期前缀。
 - `quick` 是保留名称，不能作为正式主题 slug。
-- `.agent/story/<slug>/` 是主题根目录；`<milestone>` 位于主题根目录下。
-- `原始需求.md` 保存用户原始意图；`总览.md` 保存跨需求的当前摘要。
-- 需求点、Bug 和 Review 文档位于对应 milestone 目录。
-- `library/` 保存可跨需求复用的方法论，不替代具体需求文档。
 - 正式主题检索时忽略 `.agent/story/quick/`。
-
-## 文件命名和路径
-
-- 正式需求点：`需求N_标题.md`
-- Bug：`bug/BugN_标题.md`
-- 设计 Review：`review/需求N_标题_设计review.md`
-- 代码 Review：`review/需求N_标题_代码review.md`
-- Quick 文档：`story/quick/<milestone>/任务短语.md`
-- 需求点和 Bug 在同一主题内分别连续编号。
 - `index.yaml` 中的 `file`、`design_review`、`code_review` 使用相对于主题根 `<slug>` 的正斜杠路径。
 
 ## YAML 总则
@@ -67,13 +52,6 @@
 
 位置：`.agent/milestones.yaml`
 
-### 允许的顶层字段
-
-```yaml
-current: string
-milestones: mapping
-```
-
 ### 固定结构
 
 ```yaml
@@ -94,17 +72,6 @@ milestones:
 ## 正式主题 `index.yaml`
 
 位置：`.agent/story/<slug>/index.yaml`
-
-### 允许的顶层字段
-
-```yaml
-requirement: integer
-bug: integer
-items: array
-bugs: array
-```
-
-`items` 或 `bugs` 没有条目时，省略对应顶层字段；该省略规则是固定结构的一部分。
 
 ### 固定结构示例
 
@@ -169,7 +136,6 @@ prior_status: formal-status[]
 
 - 同一主题内 `items[].id` 唯一且连续分配。
 - `keywords` 只用于正式需求，供后续定位时检索主题和需求点。设计完成后从设计文档中提取 3–8 个短词或短语，选检索者最可能输入的词：模块名、类名、Skill 名保留原名；不写「需求」「设计」「实现」这类每个需求都适用的泛词，也不写整句。设计发生实质变化时重新提取，并向用户展示与原有关键字的差异。
-- `file`、`design_review`、`code_review` 均为相对于主题根的路径。
 - `continues` 和 `continued_by` 只引用需求点编号。
 - `prior_status` 只保存正式需求状态，语义见「正式需求状态」。
 
@@ -196,21 +162,8 @@ prior_status: bug-status[]
 
 - 同一主题内 `bugs[].id` 唯一且连续分配。
 - `req` 填关联需求点编号；没有关联需求点时省略。
-- Bug 不使用 `keywords`、`design_review` 或 `code_review`。
-- `file` 为相对于主题根的路径。
 
 ### 正式需求状态
-
-```text
-待设计
-设计中
-已确认
-实现中
-Review 中
-已完成
-已Review
-阻塞
-```
 
 - `待设计`：已在总览中规划并占号，尚无详细设计。
 - `设计中`：详细设计已落盘，等待用户确认。
@@ -223,31 +176,7 @@ Review 中
 - 设计发生实质变化时回到 `设计中`，删除 `prior_status` 与当前 `design_review`、`code_review` 字段，历史报告文件保留，旧 Review 结论不再适用于新设计。
 - 代码 Review 的发现修复并验证后，通常标记为 `已完成`。以上未列出的流转由模型按各状态的含义判断。
 
-```mermaid
-flowchart LR
-    A["待设计"] --> B["设计中"] --> C["已确认"] --> D["实现中"] --> E["已完成"]
-    E -->|"代码 Review"| F["Review 中"] --> G["已Review"]
-    F -->|"发现已修复并验证"| E
-    B -->|"设计 Review"| F
-    C -->|"设计 Review"| F
-    F -->|"设计 Review 结束<br/>弹出恢复"| B
-    F -->|"设计 Review 结束<br/>弹出恢复"| C
-    C -->|"设计实质变化"| B
-    D -->|"设计实质变化"| B
-    E -->|"设计实质变化"| B
-    G -->|"设计实质变化"| B
-    X["任意状态"] -->|"压栈"| H["阻塞"] -->|"弹出恢复"| X
-```
-
 ### Bug 状态
-
-```text
-待确认
-已确认
-修复中
-已修复
-已验证
-```
 
 - `待确认`：现象已报告，尚未确认属于 Bug。
 - `已确认`：确认是行为偏离已确认意图；修复需要改变方案时保持该状态，先完成设计与实现再继续。
@@ -256,12 +185,6 @@ flowchart LR
 ## Quick `index.yaml`
 
 位置：`.agent/story/quick/<milestone>/index.yaml`
-
-### 允许的顶层字段
-
-```yaml
-items: array
-```
 
 ### 固定结构示例
 
@@ -277,7 +200,6 @@ items:
 - 每个条目只允许 `title` 和 `status`。
 - `title` 为字符串。
 - `status` 只能是 `待确认`、`已确认` 或 `已完成`。
-- Quick 不使用 `requirement`、`bug`、`id`、`keywords`、`file`、`design_review`、`code_review`、`continues`、`continued_by` 或 `prior_status`。
 
 ## 文档与代码一致性
 
