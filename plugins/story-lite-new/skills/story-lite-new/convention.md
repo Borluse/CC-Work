@@ -218,14 +218,16 @@ Review 中
 - `实现中`：正在修改实际产物。
 - `已完成`：实现完成且有验证证据。
 - `Review 中`：临时状态。进入时把当前 `status` 追加到 `prior_status`；设计 Review 结束时弹出末项恢复，代码 Review 结束时写 `已Review`；未产出可用结论时同样弹出恢复。已处于 `Review 中` 时复查不再追加。
-- `已Review`：代码 Review 完成，发现已处理或已记录。
+- `已Review`：代码 Review 完成，没有需要修复的发现，或发现已记录为暂不处理。
 - `阻塞`：临时状态。进入时把当前 `status` 追加到 `prior_status`，解除时弹出末项写回。
 - 设计发生实质变化时回到 `设计中`，删除 `prior_status` 与当前 `design_review`、`code_review` 字段，历史报告文件保留，旧 Review 结论不再适用于新设计。
+- 代码 Review 的发现修复并验证后，通常标记为 `已完成`。以上未列出的流转由模型按各状态的含义判断。
 
 ```mermaid
 flowchart LR
     A["待设计"] --> B["设计中"] --> C["已确认"] --> D["实现中"] --> E["已完成"]
     E -->|"代码 Review"| F["Review 中"] --> G["已Review"]
+    F -->|"发现已修复并验证"| E
     B -->|"设计 Review"| F
     C -->|"设计 Review"| F
     F -->|"设计 Review 结束<br/>弹出恢复"| B
