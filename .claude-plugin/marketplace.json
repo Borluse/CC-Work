@@ -5,17 +5,6 @@
   },
   "plugins": [
     {
-      "name": "story-plugin",
-      "source": "./plugins/story-plugin",
-      "description": "需求生命周期管理插件，通过 /story 路由入口提供需求设计、实现、Review、经验提炼工作流，以及 UE5 C++ 代码阅读专家和代码审查专家两个 Agent",
-      "author": {
-        "name": "borlusezhao"
-      },
-      "category": "workflow",
-      "keywords": ["ue5", "unreal-engine", "fps", "game-dev", "code-review", "story", "requirements"],
-      "tags": ["ue5", "game-development", "workflow", "code-review"]
-    },
-    {
       "name": "git-plugin",
       "source": "./plugins/git-plugin",
       "description": "Git提交插件，提供自动化的git提交功能，根据代码差异生成提交信息并完成提交",

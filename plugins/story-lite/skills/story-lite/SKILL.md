@@ -1,6 +1,6 @@
 ---
 name: story-lite
-description: "轻量需求工作流核心：维护 .agent/story 下的需求/设计/总览/bug/review 文档，支持大需求规划与拆分、设计、实现、Bug、Review、总结与知识沉淀。仅当用户显式点名 story-lite，或显式调用 story 并由其委托时使用；不要根据普通任务内容自动命中。"
+description: "轻量需求工作流核心：维护 .agent/story 下的需求/设计/总览/bug/review 文档，支持大需求规划与拆分、设计、实现、Bug、Review、总结与知识沉淀。仅当用户显式点名 story-lite 时使用；不要根据普通任务内容自动命中。"
 ---
 
 # 启用
