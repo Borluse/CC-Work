@@ -1,0 +1,209 @@
+# 工作约定
+
+## `.agent` 目录结构
+
+```text
+.agent/
+├── milestones.yaml
+├── library/
+│   ├── overall.md
+│   └── <主题>.md
+└── story/
+    ├── quick/
+    │   └── <milestone>/
+    │       ├── 任务短语.md
+    │       └── index.yaml
+    └── <slug>/
+        ├── 原始需求.md
+        ├── 总览.md
+        ├── index.yaml
+        └── <milestone>/
+            ├── 需求N_标题.md
+            ├── bug/
+            │   └── BugN_标题.md
+            └── review/
+                ├── 需求N_标题_设计review.md
+                └── 需求N_标题_代码review.md
+```
+
+- `.agent` 固定在当前工作目录根部，只使用当前工作区的 `.agent`。
+- `<slug>` 是正式主题的短名称，最多 5 个中文词，不带日期前缀。
+- `quick` 是保留名称，不能作为正式主题 slug。
+- 正式主题检索时忽略 `.agent/story/quick/`。
+- `index.yaml` 中的 `file`、`design_review`、`code_review` 使用相对于主题根 `<slug>` 的正斜杠路径。
+
+## YAML 总则
+
+`.agent` 下的工作流 YAML 只有以下三类：
+
+1. `.agent/milestones.yaml`
+2. `.agent/story/<slug>/index.yaml`
+3. `.agent/story/quick/<milestone>/index.yaml`
+
+每类 YAML 的字段集合、字段类型、状态枚举、路径规则和空集合规则固定。未定义字段不作为扩展机制。
+
+- YAML 字段使用规定的大小写和拼写。
+- 日期使用 `YYYY-MM-DD` 字符串。
+- 编号使用不小于 0 的整数。
+- 空的可选字段不写入，不写 `null` 或空数组。
+- 不通过扫描目录分配编号。
+
+## `milestones.yaml`
+
+位置：`.agent/milestones.yaml`
+
+### 固定结构
+
+```yaml
+current: 切片1
+milestones:
+  切片1:
+    created: 2026-08-05
+```
+
+规则：
+
+- `current` 必填，值必须对应 `milestones` 中的一个 key。
+- `milestones` 必填且为映射。
+- 每个 milestone 条目只允许 `created` 字段。
+- `created` 必填，格式为 `YYYY-MM-DD`。
+- 不允许增加其他顶层字段或 milestone 字段。
+
+## 正式主题 `index.yaml`
+
+位置：`.agent/story/<slug>/index.yaml`
+
+### 固定结构示例
+
+```yaml
+requirement: 1
+bug: 0
+items:
+  - id: 1
+    title: 入口 skill 概念化核心工作流
+    milestone: 切片1
+    status: 已完成
+    keywords:
+      - 自主路由
+      - 概念职责
+    file: 切片1/需求1_入口skill概念化核心工作流.md
+    design_review: 切片1/review/需求1_入口skill概念化核心工作流_设计review.md
+    code_review: 切片1/review/需求1_入口skill概念化核心工作流_代码review.md
+    continues: [2]
+    continued_by: [3]
+    prior_status:
+      - 已确认
+bugs:
+  - id: 1
+    title: 入口未被正确加载
+    req: 1
+    milestone: 切片1
+    status: 已验证
+    file: 切片1/bug/Bug1_入口未被正确加载.md
+```
+
+### 顶层字段
+
+- `requirement`：必填整数，表示已分配的最大需求点编号。
+- `bug`：必填整数，表示已分配的最大 Bug 编号。
+- `items`：正式需求条目数组；无条目时省略。
+- `bugs`：Bug 条目数组；无条目时省略。
+
+### 正式需求条目
+
+必填字段：
+
+```yaml
+id: integer
+title: string
+milestone: string
+status: formal-status
+```
+
+允许的可选字段：
+
+```yaml
+keywords: string[]
+file: string
+design_review: string
+code_review: string
+continues: integer[]
+continued_by: integer[]
+prior_status: formal-status[]
+```
+
+约束：
+
+- 同一主题内 `items[].id` 唯一且连续分配。
+- `keywords` 只用于正式需求，供后续定位时检索主题和需求点。设计完成后从设计文档中提取 3–8 个短词或短语，选检索者最可能输入的词：模块名、类名、Skill 名保留原名；不写「需求」「设计」「实现」这类每个需求都适用的泛词，也不写整句。设计发生实质变化时重新提取，并向用户展示与原有关键字的差异。
+- `continues` 和 `continued_by` 只引用需求点编号。
+- `prior_status` 只保存正式需求状态，语义见「正式需求状态」。
+
+### Bug 条目
+
+必填字段：
+
+```yaml
+id: integer
+title: string
+milestone: string
+status: bug-status
+```
+
+允许的可选字段：
+
+```yaml
+req: integer
+file: string
+prior_status: bug-status[]
+```
+
+约束：
+
+- 同一主题内 `bugs[].id` 唯一且连续分配。
+- `req` 填关联需求点编号；没有关联需求点时省略。
+
+### 正式需求状态
+
+- `待设计`：已在总览中规划并占号，尚无详细设计。
+- `设计中`：详细设计已落盘，等待用户确认。
+- `已确认`：设计已确认，可以进入实现。
+- `实现中`：正在修改实际产物。
+- `已完成`：实现完成且有验证证据。
+- `Review 中`：临时状态。进入时把当前 `status` 追加到 `prior_status`；设计 Review 结束时弹出末项恢复，代码 Review 结束时写 `已Review`；未产出可用结论时同样弹出恢复。已处于 `Review 中` 时复查不再追加。
+- `已Review`：代码 Review 完成，没有需要修复的发现，或发现已记录为暂不处理。
+- `阻塞`：临时状态。进入时把当前 `status` 追加到 `prior_status`，解除时弹出末项写回。
+- 设计发生实质变化时回到 `设计中`，删除 `prior_status` 与当前 `design_review`、`code_review` 字段，历史报告文件保留，旧 Review 结论不再适用于新设计。
+- 代码 Review 的发现修复并验证后，通常标记为 `已完成`。以上未列出的流转由模型按各状态的含义判断。
+
+### Bug 状态
+
+- `待确认`：现象已报告，尚未确认属于 Bug。
+- `已确认`：确认是行为偏离已确认意图；修复需要改变方案时保持该状态，先完成设计与实现再继续。
+- `修复中`、`已修复`、`已验证`：依次表示正在修复、修复完成、修复已被证据验证。
+
+## Quick `index.yaml`
+
+位置：`.agent/story/quick/<milestone>/index.yaml`
+
+### 固定结构示例
+
+```yaml
+items:
+  - title: 修复日志输出
+    status: 已完成
+```
+
+规则：
+
+- `items` 必填且为数组。
+- 每个条目只允许 `title` 和 `status`。
+- `title` 为字符串。
+- `status` 只能是 `待确认`、`已确认` 或 `已完成`。
+
+## 文档与代码一致性
+
+- 文档保存意图、方案、约束和重要决策。
+- 代码和实际验证证据是判断当前行为的依据；文档是判断预期意图的依据。
+- 关键理解、方案或实际行为发生变化时，相关文档应与事实保持一致。
+- 文档与代码不一致时，记录差异并显式判断是文档过期还是代码缺陷，再相应修正。

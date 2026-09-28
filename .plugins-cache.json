@@ -1,8 +1,8 @@
 {
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
-  "manifestMtime": 1785809588310.1836,
-  "createdAt": 1786413955460,
+  "manifestMtime": 1787554990767.3906,
+  "createdAt": 1790057207468,
   "plugins": [
     {
       "name": "story",
@@ -224,7 +224,7 @@
     {
       "name": "story-lite",
       "source": "./plugins/story-lite",
-      "description": "轻量需求文档维护插件：agent 干活时同步维护需求、设计、Bug 与 Review 文档",
+      "description": "轻量需求文档维护插件：同步维护需求、设计、Bug 与 Review 文档，并支持将需求转换为 HTML 工具",
       "author": {
         "name": "borlusezhao"
       },
@@ -235,17 +235,21 @@
         "bug",
         "review",
         "workflow",
-        "story"
+        "story",
+        "html",
+        "可视化"
       ],
       "tags": [
         "workflow",
         "documentation",
-        "requirements"
+        "requirements",
+        "html",
+        "visualization"
       ],
       "marketplaceName": "story-plugin-marketplace",
       "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite",
       "_capabilitiesLoaded": true,
-      "version": "0.1.28",
+      "version": "0.2.7",
       "skills": [
         {
           "name": "story-lite",
@@ -259,8 +263,13 @@
         },
         {
           "name": "story-lite-wiki",
-          "description": "从 story-lite 需求/设计/总览文档生成面向团队的精简 Wiki。TRIGGER: 当用户说'生成wiki'、'总结为wiki'、'写wiki文档'、'导出wiki'，或显式点名 story-lite-wiki 时使用。",
+          "description": "从 story-lite 需求文档生成或迭代团队 Wiki。模式：export（从总览/设计导出精简 Wiki）、tdd（从原始需求按需求点讨论方案并写入 Wiki）。TRIGGER: 生成wiki、总结为wiki、写wiki文档、导出wiki、写TDD、讨论方案、从原始需求写wiki，或显式点名 story-lite-wiki。",
           "path": "skills\\story-lite-wiki"
+        },
+        {
+          "name": "story-show",
+          "description": "将自然语言需求、计算规则或测试场景转换为可直接打开的单文件 HTML 页面。Use when the user asks to '生成 HTML'、'做成测试工具'、'做交互演示'、'把需求可视化'，或需要可修改参数并实时计算、绘图的网页工具时。",
+          "path": "skills\\story-show"
         }
       ],
       "sourcePath": "./plugins/story-lite",
