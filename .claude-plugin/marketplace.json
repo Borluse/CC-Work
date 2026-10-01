@@ -47,6 +47,17 @@
       "category": "开发工具",
       "keywords": ["需求", "文档", "review", "workflow", "story", "html", "可视化"],
       "tags": ["workflow", "documentation", "requirements", "html", "visualization"]
+    },
+    {
+      "name": "story-lite-new",
+      "source": "./plugins/story-lite-new",
+      "description": "围绕 .agent 文档开展设计、实现和 Review 的工作方式插件，提供 index.yaml 账本脚本",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": ["需求", "文档", "review", "workflow", "story"],
+      "tags": ["workflow", "documentation", "requirements", "review"]
     }
   ]
 }
