@@ -162,27 +162,23 @@ class SetStatusTests(StoryTestCase):
 
     def test_normal_status_clears_stack(self):
         self.set("--status", "已确认")
-        self.set("--status", "Review 中")
+        self.set("--status", "阻塞")
         self.assertEqual(self.entry()["prior_status"], ["已确认"])
         self.set("--status", "已完成")
         self.assertNotIn("prior_status", self.entry())
 
-    def test_review_recheck_does_not_push_again(self):
-        self.set("--status", "已完成")
-        self.set("--status", "Review 中")
-        self.set("--status", "Review 中")
-        self.assertEqual(self.entry()["prior_status"], ["已完成"])
-
-    def test_block_during_review_stacks_and_restore_pops(self):
-        self.set("--status", "已确认")
-        self.set("--status", "Review 中")
+    def test_repeated_block_does_not_push_again(self):
+        self.set("--status", "实现中")
         out = self.set("--status", "阻塞")
-        self.assertIn("进入前: 已确认→Review 中", out)
+        self.assertIn("进入前: 实现中", out)
+        self.set("--status", "阻塞")
+        self.assertEqual(self.entry()["prior_status"], ["实现中"])
         self.set("--restore")
-        self.assertEqual(self.entry()["status"], "Review 中")
-        self.set("--restore")
-        self.assertEqual(self.entry()["status"], "已确认")
+        self.assertEqual(self.entry()["status"], "实现中")
         self.assertNotIn("prior_status", self.entry())
+
+    def test_review_state_is_not_a_status(self):
+        self.fail("set-status", "--kind", "requirement", "--slug", "主题A", "--id", "1", "--status", "Review 中")
 
     def test_restore_with_empty_stack_fails_without_writing(self):
         before = self.text(self.ledger_path())
@@ -250,11 +246,11 @@ class QuickCreateTests(StoryTestCase):
     def create(self, *extra):
         return self.ok("set-status", "--kind", "quick", "--title", "新任务", "--create", *extra)
 
-    def test_create_defaults_to_pending_confirmation(self):
-        self.assertEqual(self.create().strip(), "quick 新任务 待确认")
-        self.ok("set-status", "--kind", "quick", "--title", "第二个", "--create", "--status", "已确认")
+    def test_create_defaults_to_confirmed(self):
+        self.assertEqual(self.create().strip(), "quick 新任务 已确认")
+        self.ok("set-status", "--kind", "quick", "--title", "第二个", "--create", "--status", "待确认")
         self.assertEqual(self.doc(self.QUICK), {"items": [
-            {"title": "新任务", "status": "待确认"}, {"title": "第二个", "status": "已确认"}]})
+            {"title": "新任务", "status": "已确认"}, {"title": "第二个", "status": "待确认"}]})
         self.assertIn("quick 切片1: 新任务, 第二个", self.ok("init"))
 
     def test_create_errors_leave_file_untouched(self):

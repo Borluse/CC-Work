@@ -21,12 +21,12 @@ try:
 except ImportError:
     sys.exit("error: 需要 PyYAML，请执行 pip install pyyaml")
 
-REQUIREMENT_STATUSES = ["待设计", "设计中", "已确认", "实现中", "Review 中", "已完成", "已Review", "阻塞"]
+REQUIREMENT_STATUSES = ["待设计", "设计中", "已确认", "实现中", "已完成", "已Review", "阻塞"]
 BUG_STATUSES = ["待确认", "已确认", "修复中", "已修复", "已验证"]
 QUICK_STATUSES = ["待确认", "已确认", "已完成"]
 
-# 进入这两个状态时把当前状态压入 prior_status，恢复时弹出。
-STACKING_STATUSES = ("Review 中", "阻塞")
+# 进入阻塞时把当前状态压入 prior_status，恢复时弹出。
+STACKING_STATUSES = ("阻塞",)
 
 QUICK_DIR = "quick"
 MILESTONES_PATH = ".agent/milestones.yaml"
@@ -406,7 +406,7 @@ def check_status(status, allowed):
 def transition(status, stack, target, restore):
     """计算一次状态变更后的 (status, prior_status)。
 
-    进入 Review 中 / 阻塞时压栈当前状态；已处于 Review 中时复查不再压栈，避免栈里堆满同一状态。
+    进入阻塞时压栈当前状态；已处于该状态时再次写入不压栈，避免栈里堆满同一状态。
     写入普通状态时清空栈；restore 弹出栈顶写回，栈空则报错而不是静默通过。
 
     @param status: 条目当前状态。
@@ -421,7 +421,7 @@ def transition(status, stack, target, restore):
             raise StoryError("prior_status 为空，没有可恢复的状态")
         return stack.pop(), stack
     if target in STACKING_STATUSES:
-        if not (target == "Review 中" and status == "Review 中") and status:
+        if status and status != target:
             stack.append(status)
         return target, stack
     return target, []
@@ -727,7 +727,7 @@ def cmd_set_status(root, args):
 def set_quick_status(root, args, has_extra):
     """更新或新增 Quick 条目；Quick 只有 title 与 status，因此拒绝其他写入。
 
-    新增时状态缺省为 待确认：Quick 的范围需要先与用户确认。
+    新增时状态缺省为 已确认：是否按 Quick 处理由模型判断并声明，用户可以否决。
     """
     if args.restore or has_extra:
         raise StoryError("Quick 条目只有 title 与 status，只支持 --status 与 --create")
@@ -745,7 +745,7 @@ def set_quick_status(root, args, has_extra):
         raise StoryError(f"{path} 中没有标题为 {args.title!r} 的 Quick 条目")
     elif not args.status:
         raise StoryError("kind quick 需要 --status")
-    item["status"] = check_status(args.status or "待确认", QUICK_STATUSES)
+    item["status"] = check_status(args.status or "已确认", QUICK_STATUSES)
     write_yaml(path, {"items": items})
     print(f"quick {args.title} {item['status']}")
 
@@ -801,7 +801,7 @@ def build_parser():
     p.add_argument("--title", help="仅 quick：以标题定位条目")
     p.add_argument("--milestone", help="仅 quick：省略取 current")
     p.add_argument("--status")
-    p.add_argument("--create", action="store_true", help="仅 quick：新增条目，状态缺省为 待确认")
+    p.add_argument("--create", action="store_true", help="仅 quick：新增条目，状态缺省为 已确认")
     p.add_argument("--restore", action="store_true", help="弹出 prior_status 栈顶写回 status")
     p.add_argument("--keywords", help="逗号分隔，整体替换；空串删除该字段")
     p.add_argument("--review-kind", choices=["design", "code"])
