@@ -86,7 +86,7 @@ Bug 表示实际行为偏离了已确认的意图。修复只需调整行为时�
 
 调用形式为 `python "<Skill 目录>/scripts/story.py" <命令>`，在项目根目录运行，`<Skill 目录>` 是本文件所在目录的绝对路径。需要 Python 3.9+ 和 PyYAML，缺少 PyYAML 时先 `pip install pyyaml`，仍无法运行再告知用户。
 
-脚本固化了账本格式，并在每次读取时校验，因此它覆盖的写入一律通过脚本完成，不手写替代。脚本不覆盖的字段（`continues`、`continued_by`，以及已有条目的 `title`、`file`、`milestone`）直接编辑 YAML，改完执行一次 `status` 即可发现格式错误。参数用 `--help` 查看。
+脚本固化了账本格式，并在每次读取时校验；`index.yaml` 既可以用脚本更新，也可以直接编辑 YAML，改完执行一次 `status` 即可发现格式错误。脚本不覆盖的字段（`continues`、`continued_by`，以及已有条目的 `title`、`file`、`milestone`）直接编辑 YAML。参数用 `--help` 查看。
 
 - `init [slug]`：定位环境、主题和当前 milestone；给出 slug 时列出该主题各条目的完整信息。
 - `search 词...`：检索已有主题和需求点。
