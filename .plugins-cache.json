@@ -1,8 +1,8 @@
 {
   "version": 1,
   "marketplaceName": "story-plugin-marketplace",
-  "manifestMtime": 1790566853041.3782,
-  "createdAt": 1790566917571,
+  "manifestMtime": 1790856822405.5833,
+  "createdAt": 1790908604988,
   "plugins": [
     {
       "name": "git",
@@ -171,6 +171,41 @@
       ],
       "sourcePath": "./plugins/story-lite",
       "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "story-lite-new",
+      "source": "./plugins/story-lite-new",
+      "description": "Story-lite-new 插件（待定义）",
+      "author": {
+        "name": "borlusezhao"
+      },
+      "category": "开发工具",
+      "keywords": [
+        "需求",
+        "文档",
+        "review",
+        "workflow",
+        "story"
+      ],
+      "tags": [
+        "workflow",
+        "documentation",
+        "requirements",
+        "review"
+      ],
+      "marketplaceName": "story-plugin-marketplace",
+      "installedPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite-new",
+      "_capabilitiesLoaded": true,
+      "version": "0.1.9",
+      "skills": [
+        {
+          "name": "story-lite-new",
+          "description": "围绕 .agent 文档开展设计、实现和 Review；仅当用户显式点名 @story-lite-new、plugin://story-lite-new 或说『使用 Story-lite-new』时启用。",
+          "path": "skills\\story-lite-new"
+        }
+      ],
+      "sourcePath": "./plugins/story-lite-new",
+      "configPath": "D:\\ClaudeCode\\CC-Work\\plugins\\story-lite-new\\.claude-plugin\\plugin.json"
     }
   ]
 }
