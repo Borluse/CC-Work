@@ -5,11 +5,13 @@
 
 import contextlib
 import io
+import json
 import os
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -686,6 +688,39 @@ class LockTests(StoryTestCase):
         self.assertEqual(data["requirement"], 7)
         self.assertEqual(len(data["items"]), 7)
         self.assertEqual(sorted(item["id"] for item in data["items"]), list(range(1, 8)))
+
+
+class IdleWatchdogTests(unittest.TestCase):
+    """空闲退出：超时后进程自行结束，持续有消息时保持存活。"""
+
+    def start(self, timeout):
+        env = dict(os.environ)
+        env["STORY_IDLE_TIMEOUT"] = str(timeout)
+        script = str(Path(story_core.__file__).parent / "story_mcp.py")
+        proc = subprocess.Popen([sys.executable, script], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                stderr=subprocess.DEVNULL, text=True, encoding="utf-8", bufsize=1, env=env)
+        self.addCleanup(self.stop, proc)
+        return proc
+
+    @staticmethod
+    def stop(proc):
+        """结束仍在运行的服务，避免测试后留下子进程。"""
+        if proc.poll() is None:
+            proc.kill()
+        proc.wait(timeout=10)
+
+    def test_exits_after_idle_timeout(self):
+        proc = self.start(0.6)
+        self.assertEqual(proc.wait(timeout=15), 0)
+
+    def test_stays_alive_while_receiving_messages(self):
+        proc = self.start(0.8)
+        for _ in range(5):
+            proc.stdin.write(json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/list"}) + "\n")
+            proc.stdin.flush()
+            proc.stdout.readline()
+            time.sleep(0.3)
+        self.assertIsNone(proc.poll(), "持续有消息时不应退出")
 
 
 if __name__ == "__main__":

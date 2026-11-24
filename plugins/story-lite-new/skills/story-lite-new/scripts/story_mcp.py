@@ -13,6 +13,8 @@ import io
 import json
 import os
 import sys
+import threading
+import time
 import traceback
 from pathlib import Path
 
@@ -21,6 +23,11 @@ import story_core
 # 协议版本必须属于客户端接受的范围，pi 的客户端支持到 2025-11-25。
 PROTOCOL_VERSION = "2025-11-25"
 SERVER_INFO = {"name": "story", "version": "1"}
+
+# 空闲多久后主动退出：没有调用的会话不必一直抱着索引内存。
+# 客户端在下次调用时会重新连接，代价是重新建一次索引。
+IDLE_TIMEOUT_SECONDS = 30 * 60
+IDLE_CHECK_SECONDS = 60
 
 INSTRUCTIONS = (
     ".agent 文档库服务。init 定位项目与 milestone，search 检索账本条目，find 检索正文，"
@@ -370,6 +377,47 @@ def send(message):
     sys.stdout.flush()
 
 
+def idle_timeout():
+    """读取空闲退出时长，可由 STORY_IDLE_TIMEOUT 覆盖，0 表示不退出。
+
+    值非法时保留默认值并写 stderr，配置写错不应阻止服务启动。
+
+    @return: 秒数。
+    """
+    raw = os.environ.get("STORY_IDLE_TIMEOUT", "").strip()
+    if not raw:
+        return float(IDLE_TIMEOUT_SECONDS)
+    try:
+        return max(0.0, float(raw))
+    except ValueError:
+        print(f"warning: STORY_IDLE_TIMEOUT={raw!r} 不是数字，改用默认 {IDLE_TIMEOUT_SECONDS} 秒",
+              file=sys.stderr, flush=True)
+        return float(IDLE_TIMEOUT_SECONDS)
+
+
+def start_idle_watchdog(state):
+    """启动空闲退出看门狗。
+
+    看门狗只写 stderr，stdout 留给主线程写协议消息，避免两条线程交错破坏消息。
+
+    @param state: 单元素列表，state[0] 是最近一次收到消息的 monotonic 时间戳。
+    """
+    timeout = idle_timeout()
+    if timeout <= 0:
+        return
+
+    def watch():
+        interval = min(IDLE_CHECK_SECONDS, timeout)
+        while True:
+            time.sleep(interval)
+            if time.monotonic() - state[0] >= timeout:
+                print(f"idle for {timeout:.0f}s, exiting", file=sys.stderr, flush=True)
+                # 主线程可能阻塞在读 stdin 上，用 _exit 直接结束进程。
+                os._exit(0)
+
+    threading.Thread(target=watch, name="idle-watchdog", daemon=True).start()
+
+
 def main():
     """从 stdin 逐行读消息，处理并写回 stdout。
 
@@ -378,7 +426,10 @@ def main():
     for stream in (sys.stdin, sys.stdout):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8")
+    state = [time.monotonic()]
+    start_idle_watchdog(state)
     for line in sys.stdin:
+        state[0] = time.monotonic()
         line = line.strip()
         if not line:
             continue
