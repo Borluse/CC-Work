@@ -1,3 +1,4 @@
 *.zip
 .vscode
 .agent/
+__pycache__/
