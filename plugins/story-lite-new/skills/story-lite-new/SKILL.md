@@ -36,7 +36,7 @@ description: "围绕 .agent 文档开展设计、实现和 Review；仅当用户
 
 代码只能提供「行为」。这段行为想达成什么、哪些边界是有意为之、哪些问题已经被发现，只保存在 `.agent` 中；只看代码时这些只能靠推测，而推测出的意图很容易偏离当初确认的意图。因此阅读、解释和排查代码时同样先查 `.agent`：命中时直接获得意图和已知问题，未命中时也能确认结论只能以代码为依据。文档与代码不一致本身就是发现，显式判断是文档过期还是代码缺陷，再修正对应的一方。
 
-检索入口是 `search`（匹配各主题账本的标题和 `keywords`）和 `library/`。命中主题后先读 `总览.md` 了解整体，再深入相关的需求点文档和 Bug 文档。
+检索入口是 `search`（匹配各主题账本的标题和 `keywords`）、`find`（匹配文档正文）和 `library/`。命中主题后先读 `总览.md` 了解整体，再深入相关的需求点文档和 Bug 文档。
 
 需要修改文件的工作，还要确认归属的主题和 milestone，因为文档和状态都按这个归属组织。当前 milestone 用 `init` 查看；主题归属不明确时询问用户，同一会话中已确认的主题沿用到用户切换话题为止。只读工作不产生文档，不需要确认归属。
 
@@ -85,18 +85,21 @@ Bug 表示实际行为偏离了已确认的意图。修复只需调整行为时�
 
 仅当当前目录属于 Perforce 工作区时，为每个新需求创建 pending changelist，名称用简短准确的中文概括需求；相关文件在修改前归入该 changelist，使每个需求的改动可以独立审阅和提交。`.agent` 目录和仓库根目录的 `AGENTS.md` 不受 Perforce 管理，不纳入 changelist，也不执行 `p4 add`。
 
-## 账本脚本
+## 文档服务
 
-调用形式为 `python "<Skill 目录>/scripts/story.py" <命令>`，在项目根目录运行，`<Skill 目录>` 是本文件所在目录的绝对路径。需要 Python 3.9+ 和 PyYAML，缺少 PyYAML 时先 `pip install pyyaml`，仍无法运行再告知用户。
+`.agent` 的读写通过 MCP 服务 `story` 完成，工具在 pi 里是 `mcp__story__<tool>`。服务首次访问某个项目时建立正文索引，之后每次调用只做增量校验；所有工具接受可选 `project`（`STORY_ROOTS` 里的别名或项目根绝对路径），省略时用当前工作目录。
 
-脚本固化了账本格式，并在每次读取时校验；`index.yaml` 既可以用脚本更新，也可以直接编辑 YAML，改完执行一次 `status` 即可发现格式错误。脚本不覆盖的字段（`continues`、`continued_by`，以及已有条目的 `title`、`file`、`milestone`）直接编辑 YAML。参数用 `--help` 查看。
+服务固化了账本格式，并在每次读取时校验；`index.yaml` 也可以直接编辑 YAML，改完调用一次 `status` 即可发现格式错误。服务不覆盖的字段（`continues`、`continued_by`，以及已有条目的 `title`、`file`、`milestone`）直接编辑 YAML。
 
 - `init [slug]`：定位环境、主题和当前 milestone；给出 slug 时列出该主题各条目的完整信息。
-- `search 词...`：检索已有主题和需求点。
+- `search 词...`：检索已有主题和需求点，匹配账本的标题与 `keywords`。
+- `find 词...`：检索文档正文，返回文件、标题层级、行号和片段。定位某段结论、类名或配置项写在哪份文档里时用它。
 - `status`：按状态汇总进度与阻塞。
 - `next-id slug requirement|bug 标题`：取号并写入账本，`--file` 中的 `{id}` 替换为新编号。
 - `set-status`：更新状态、`keywords` 和 Review 路径，`--restore` 解除阻塞；`--kind quick --create` 新增 Quick 条目。
 - `milestone create|use 名称`：创建或切换 milestone。
+
+服务不可用时告知用户，不要改用读写文件替代。用户确认需要继续时，用同一目录下的 `scripts/story.py` 命令行兑底（需要 Python 3.9+ 和 PyYAML），参数与工具名一致。
 
 ## 提问
 

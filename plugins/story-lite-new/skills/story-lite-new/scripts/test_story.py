@@ -5,6 +5,10 @@
 
 import contextlib
 import io
+import os
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -13,6 +17,7 @@ from unittest import mock
 import yaml
 
 import story
+import story_core
 
 
 class StoryTestCase(unittest.TestCase):
@@ -532,7 +537,7 @@ class IoAndUsageTests(StoryTestCase):
 
     def test_replace_failure_cleans_temp_file(self):
         self.setup_milestone()
-        with mock.patch.object(story.os, "replace", side_effect=PermissionError("locked")):
+        with mock.patch.object(story_core.os, "replace", side_effect=PermissionError("locked")):
             self.assertIn("无法写入", self.fail("next-id", "主题A", "requirement", "标题"))
         self.assertEqual(list(self.root.rglob("*.tmp")), [])
         self.assertFalse(self.path(self.ledger_path()).exists())
@@ -556,6 +561,131 @@ class ReservedNameTests(StoryTestCase):
         self.setup_milestone()
         self.ok("next-id", "CONSOLE", "requirement", "标题")
         self.ok("milestone", "create", "COM10")
+
+
+class FindTests(StoryTestCase):
+    """正文检索：定位、权重、过滤与索引失效。"""
+
+    def setUp(self):
+        super().setUp()
+        # 索引缓存在模块级，用例之间必须清掉，否则会读到上一个用例留下的行缓存。
+        story_core._INDEX_CACHE.clear()
+        self.addCleanup(story_core._INDEX_CACHE.clear)
+
+    def test_reports_relative_path_heading_and_line(self):
+        self.write(".agent/library/清单.md", "# 顶层\n\n## 小节\n环绕飞行说明\n")
+        out = self.ok("find", "环绕飞行")
+        self.assertIn("library/清单.md 1", out)
+        self.assertIn("顶层 › 小节 4: 环绕飞行说明", out)
+
+    def test_heading_hit_outranks_body_hit(self):
+        self.write(".agent/library/正文.md", "# 其他\n环绕飞行在正文里\n")
+        self.write(".agent/library/标题.md", "# 环绕飞行\n无关内容\n")
+        out = self.ok("find", "环绕飞行")
+        self.assertLess(out.index("标题.md"), out.index("正文.md"))
+
+    def test_hits_and_limit_truncate_with_warning(self):
+        for index in range(3):
+            self.write(f".agent/library/f{index}.md", "# 标题\n环绕飞行\n环绕飞行\n")
+        out = self.ok("find", "环绕飞行", "--limit", "2", "--hits", "1")
+        self.assertEqual(out.count(": 环绕飞行\n"), 2)
+        self.assertIn("! 共 3 个文件命中，仅显示前 2 个", out)
+
+    def test_no_hit_and_empty_tokens(self):
+        self.write(".agent/library/a.md", "# 标题\n正文\n")
+        self.assertEqual(self.ok("find", "不存在的词").strip(), "无命中")
+        self.assertIn("没有有效词元", self.fail("find", "a"))
+
+    def test_requires_agent_directory(self):
+        self.write(".agent/library/a.md", "# 标题\n环绕飞行\n")
+        shutil.rmtree(self.path(".agent"))
+        self.assertIn("不存在，无法检索文档", self.fail("find", "环绕飞行"))
+
+    def test_filters_by_slug_and_milestone(self):
+        self.write(".agent/story/主题A/切片1/需求1_x.md", "# 需求\n环绕飞行\n")
+        self.write(".agent/story/主题B/切片1/需求1_y.md", "# 需求\n环绕飞行\n")
+        by_slug = self.ok("find", "环绕飞行", "--slug", "主题A")
+        self.assertIn("主题A", by_slug)
+        self.assertNotIn("主题B", by_slug)
+        by_milestone = self.ok("find", "环绕飞行", "--milestone", "切片1")
+        self.assertIn("主题A", by_milestone)
+        self.assertIn("主题B", by_milestone)
+
+    def test_index_picks_up_changed_files(self):
+        self.write(".agent/library/a.md", "# 标题\n旧内容\n")
+        self.assertEqual(self.ok("find", "新的内容很长").strip(), "无命中")
+        self.write(".agent/library/a.md", "# 标题\n新的内容很长\n")
+        self.assertIn("新的内容很长", self.ok("find", "新的内容很长"))
+
+    def test_walk_skips_git_and_pycache(self):
+        self.write(".agent/.git/x.md", "# 标题\n环绕飞行\n")
+        self.write(".agent/__pycache__/y.md", "# 标题\n环绕飞行\n")
+        self.write(".agent/library/keep.md", "# 标题\n环绕飞行\n")
+        files = story_core.walk_md(str(self.path(".agent")))
+        self.assertEqual([Path(item).name for item in files], ["keep.md"])
+
+    @unittest.skipUnless(os.name == "nt", "目录联接只在 Windows 上创建")
+    def test_junction_loop_does_not_recurse(self):
+        self.write(".agent/library/a.md", "# 标题\n环绕飞行\n")
+        link = self.path(".agent/library/loop")
+        created = subprocess.run(["cmd", "/c", "mklink", "/J", str(link), str(self.path(".agent"))],
+                                 capture_output=True)
+        if created.returncode != 0:
+            self.skipTest("无法创建目录联接")
+        # junction 要用 rmdir 移除：rmtree 会递归删掉它指向的内容。
+        self.addCleanup(os.rmdir, link)
+        files = story_core.walk_md(str(self.path(".agent")))
+        self.assertEqual([Path(item).name for item in files], ["a.md"])
+        self.assertIn("library/a.md", self.ok("find", "环绕飞行"))
+
+
+class LockTests(StoryTestCase):
+    """写锁：同一文件互斥、不同文件互不阻塞、并发写不丢更新。"""
+
+    def lock_ledger(self):
+        path = self.path(self.ledger_path())
+        path.parent.mkdir(parents=True, exist_ok=True)
+        return path
+
+    def test_same_file_lock_times_out_with_error(self):
+        path = self.lock_ledger()
+        original = story_core.LOCK_TIMEOUT_SECONDS
+        story_core.LOCK_TIMEOUT_SECONDS = 0.2
+        self.addCleanup(setattr, story_core, "LOCK_TIMEOUT_SECONDS", original)
+        with story_core.file_lock(path):
+            with self.assertRaises(story_core.StoryError):
+                with story_core.file_lock(path):
+                    pass
+
+    def test_different_files_do_not_block_each_other(self):
+        with story_core.file_lock(self.lock_ledger()):
+            self.ok("milestone", "create", "切片1")
+            out = self.ok("next-id", "主题B", "requirement", "并发")
+        self.assertIn("requirement 1 主题B", out)
+
+    def test_concurrent_processes_keep_all_updates(self):
+        self.setup_milestone()
+        self.ok("next-id", "主题A", "requirement", "起始")
+        scripts = str(Path(story_core.__file__).parent)
+        program = (
+            "import sys\n"
+            f"sys.path.insert(0, {scripts!r})\n"
+            "import story_core\n"
+            "for index in range(3):\n"
+            "    story_core.main(['--cwd', sys.argv[1], 'next-id', '主题A', 'requirement', '并发'])\n"
+        )
+        workers = [
+            subprocess.Popen([sys.executable, "-c", program, str(self.root)],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+            for _ in range(2)
+        ]
+        for worker in workers:
+            _, err = worker.communicate()
+            self.assertEqual(worker.returncode, 0, err)
+        data = self.doc(self.ledger_path())
+        self.assertEqual(data["requirement"], 7)
+        self.assertEqual(len(data["items"]), 7)
+        self.assertEqual(sorted(item["id"] for item in data["items"]), list(range(1, 8)))
 
 
 if __name__ == "__main__":
